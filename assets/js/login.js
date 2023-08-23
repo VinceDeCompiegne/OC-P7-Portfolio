@@ -13,9 +13,9 @@ formulaireConnexion.addEventListener("submit", async function (event) {
        const formulaireIdentification ={
         "email": email,
         "password": password
-    }
+        }
 
-    let jeton = window.localStorage.getItem('token');
+        let jeton = window.localStorage.getItem('token');
     
 
         if (jeton === null) {
@@ -67,7 +67,7 @@ formulaireConnexion.addEventListener("submit", async function (event) {
 
         //  test que la valeur est bien stocké
         //  token = window.localStorage.getItem('token');
-        console.log(jeton);
+        // console.log(jeton);
 
 
 }
