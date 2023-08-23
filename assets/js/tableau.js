@@ -1,7 +1,10 @@
-callApiGallery();
 
-async function callApiGallery(){
 
+genererGallery();
+
+export async function callApiGallery(){
+
+    let gallery = null;
     let galleryJson = window.localStorage.getItem('gallery');
  
     if (galleryJson === null) {
@@ -29,11 +32,14 @@ async function callApiGallery(){
         gallery = JSON.parse(galleryJson);
     }
 
-    genererGallery(gallery,0);
-
+    return gallery;
 }
 
-function genererGallery(gallery,category = 0) {
+export function genererGallery(category = 0) {
+
+    callApiGallery();
+    let galleryJson = window.localStorage.getItem('gallery');
+    let gallery = JSON.parse(galleryJson);
 
     let galleryFilter = null;
 
@@ -42,13 +48,15 @@ function genererGallery(gallery,category = 0) {
     }else{
         galleryFilter = gallery.filter((tableau) => tableau.category.id == category);
     }
-    
+
+    // Récupération de l'élément du DOM qui accueillera les fiches
+    const sectionFiches = document.querySelector(".gallery");
+    sectionFiches.innerHTML="";
 
     for (let i = 0; i < galleryFilter.length; i++) {
 
         const tableau = galleryFilter[i];
-        // Récupération de l'élément du DOM qui accueillera les fiches
-        const sectionFiches = document.querySelector(".gallery");
+        
         // Création d’une balise dédiée à une pièce automobile
         const tableauElement = document.createElement("figure");
         tableauElement.dataset.id = gallery[i].id;
