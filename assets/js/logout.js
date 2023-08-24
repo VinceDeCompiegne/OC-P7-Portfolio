@@ -1,5 +1,6 @@
 let lienLogin = document.querySelector(".lien-login"); 
-let bandeauEdition = document.querySelectorAll(".edition-bondeau-administration")  
+let bandeauEdition = document.querySelectorAll(".editionBondeau");
+
 /* appel de la fonction à l'ouverture de page */
 logout();
 
@@ -12,7 +13,7 @@ lienLogin.addEventListener("click", async function (event) {
         event.preventDefault();
         localStorage.removeItem("token");
         lienLogin.textContent = "login";
-        if (bandeauEdition.length > 0) {bandeauEdition[0].style.display="none"}
+        if (bandeauEdition.length > 0) bandeauEdition.forEach(a => a.style.display="none");
     }
     
 });
@@ -24,10 +25,11 @@ function logout(){
 
     if(jeton !== null){
         lienLogin.textContent = "logout";
-        if (bandeauEdition.length > 0) {bandeauEdition[0].style.display="flex"}
+        let i = null;
+        if (bandeauEdition.length > 0) bandeauEdition.forEach(a => a.style.display="flex");
     }else{
         lienLogin.textContent = "login";
-        if (bandeauEdition.length > 0) {bandeauEdition[0].style.display="none"}
+        if (bandeauEdition.length > 0) bandeauEdition.forEach(a => a.style.display="none");
     }
 
 }

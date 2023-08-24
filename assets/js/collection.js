@@ -1,4 +1,4 @@
-import { genererGallery } from './tableau.js';
+import { genererGallery } from './gallery.js';
 
 callApiCategories();
 
@@ -57,11 +57,12 @@ function createBtnDom(id,name){
     const sectionFiltre = document.querySelector(".filtre");
     const divElement = document.createElement("div");
     divElement.dataset.id = id;
-    divElement.classList.add('filtre-btn');
+    
     divElement.addEventListener("click",function() {genererGallery(id);});
 
-    const txtElement = document.createElement("h3");
+    const txtElement = document.createElement("p");
     txtElement.innerText = name;
+    divElement.classList.add('filtre-btn');
 
     sectionFiltre.appendChild(divElement);
     divElement.appendChild(txtElement);

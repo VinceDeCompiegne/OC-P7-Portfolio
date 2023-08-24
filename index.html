@@ -20,7 +20,7 @@
 		<link rel="stylesheet" href="./assets/css/modal.css" />
 	</head>
 	<body>
-		<div class="edition-bondeau-administration">
+		<div class="editionBondeau edition-bondeau-administration">
 			<div class="edition-boutons">
 				<div class="edition-button-edition">
 					<i class="fa-regular fa-pen-to-square"></i> Mode édition
@@ -43,6 +43,9 @@
 			<section id="introduction">
 				<figure>
 					<img src="./assets/images/sophie-bluel.png" alt="" />
+					<span class="editionBondeau">
+						<i class="fa-regular fa-pen-to-square"></i> Mode édition
+					</span>
 				</figure>
 				<article>
 					<h2>Designer d'espace</h2>
@@ -64,7 +67,15 @@
 				</article>
 			</section>
 			<section id="portfolio">
-				<h2>Mes Projets</h2>
+				<div class="portfolioTitre">
+					
+						<h2>Mes Projets</h2>
+						<span class="editionBondeau">
+							<i class="fa-regular fa-pen-to-square"></i> Mode édition
+						</span>
+					
+				</div>
+
 				<div class="filtre"></div>
 				<div class="gallery">
 					<!-- <figure>
@@ -166,6 +177,6 @@
 	</body>
 	<script src="./assets/js/logout.js"></script>
 	<script type="module" src="./assets/js/collection.js"></script>
-	<script type="module" src="./assets/js/tableau.js"></script>
+	<script type="module" src="./assets/js/gallery.js"></script>
 	<script src="./assets/js/modalEdition.js"></script>
 </html>
