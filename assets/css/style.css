@@ -323,3 +323,6 @@ input[type="submit"]{
 	margin-bottom:20px;
 	color:red;
 }
+.fa-regular{
+	padding-right:5px;
+}

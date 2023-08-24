@@ -50,7 +50,7 @@ export function genererGallery(category = 0) {
     }
 
     // Récupération de l'élément du DOM qui accueillera les fiches
-    const sectionFiches = document.querySelector(".gallery");
+    const sectionFiches = document.querySelector(`.gallery`);
     sectionFiches.innerHTML="";
 
     for (let i = 0; i < galleryFilter.length; i++) {

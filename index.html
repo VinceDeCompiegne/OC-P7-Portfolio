@@ -44,7 +44,7 @@
 				<figure>
 					<img src="./assets/images/sophie-bluel.png" alt="" />
 					<span class="editionBondeau">
-						<i class="fa-regular fa-pen-to-square"></i> Mode édition
+						<i class="fa-regular fa-pen-to-square"></i>  modifier
 					</span>
 				</figure>
 				<article>
@@ -68,12 +68,10 @@
 			</section>
 			<section id="portfolio">
 				<div class="portfolioTitre">
-					
-						<h2>Mes Projets</h2>
-						<span class="editionBondeau">
-							<i class="fa-regular fa-pen-to-square"></i> Mode édition
-						</span>
-					
+					<h2>Mes Projets</h2>
+					<span class="editionBondeau">
+						<i class="fa-regular fa-pen-to-square"></i>  modifier
+					</span>
 				</div>
 
 				<div class="filtre"></div>
@@ -81,67 +79,7 @@
 					<!-- <figure>
 						<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
 						<figcaption>Abajour Tahina</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/appartement-paris-v.png"
-							alt="Appartement Paris V" />
-						<figcaption>Appartement Paris V</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/restaurant-sushisen-londres.png"
-							alt="Restaurant Sushisen - Londres" />
-						<figcaption>Restaurant Sushisen - Londres</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/la-balisiere.png"
-							alt="Villa “La Balisiere” - Port Louis" />
-						<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/structures-thermopolis.png"
-							alt="Structures Thermopolis" />
-						<figcaption>Structures Thermopolis</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/appartement-paris-x.png"
-							alt="Appartement Paris X" />
-						<figcaption>Appartement Paris X</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/le-coteau-cassis.png"
-							alt="Pavillon “Le coteau” - Cassis" />
-						<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/villa-ferneze.png"
-							alt="Villa Ferneze - Isola d’Elba" />
-						<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/appartement-paris-xviii.png"
-							alt="Appartement Paris XVIII" />
-						<figcaption>Appartement Paris XVIII</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/bar-lullaby-paris.png"
-							alt="Bar “Lullaby” - Paris" />
-						<figcaption>Bar “Lullaby” - Paris</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/hotel-first-arte-new-delhi.png"
-							alt="Hotel First Arte - New Delhi" />
-						<figcaption>Hotel First Arte - New Delhi</figcaption>
-					</figure> -->
+					</figure>-->
 				</div>
 			</section>
 			<section id="contact">
@@ -171,12 +109,29 @@
 			<!-- Contenu du modal -->
 			<div class="modal-content">
 				<span class="close">&times;</span>
-				<p>Some text in the Modal..</p>
+				<h2>Galerie photo</h2>
+				<div id="modal-gallery"></div>
+				<hr>
+				<span class="modal-btnAjouter">Ajouter une photo</span>
+				<span class="modal-suppTout">Supprimer la galerie</span>
+			</div>
+		</div>
+		<div id="myModal-ajout-photo" class="modal">
+			<!-- Contenu du modal -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>Ajout photo</h2>
+				<form action="#">
+					<input type="file" id="myFile" name="filename">
+					<input type="text" id="myTitle" name="myTitle">
+					<hr>
+					<input class="modal-btnAjouter" type="submit" placeholder="">
+				</form>
 			</div>
 		</div>
 	</body>
 	<script src="./assets/js/logout.js"></script>
 	<script type="module" src="./assets/js/collection.js"></script>
 	<script type="module" src="./assets/js/gallery.js"></script>
-	<script src="./assets/js/modalEdition.js"></script>
+	<script type="module" src="./assets/js/modal_1_Del.js"></script>
 </html>
