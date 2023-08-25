@@ -1,4 +1,4 @@
-import { callApiGallery } from './gallery.js';
+import { callApiGallery, genererGallery } from './gallery.js';
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -17,6 +17,7 @@ btn.onclick = function () {
 
 // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
+  genererGallery(0);
   modal.style.display = "none";
 }
 
@@ -37,31 +38,27 @@ document.addEventListener('keydown', (event) => {
   };
 }, false);
 
-export function genererGalleryModal(category = 0) {
-
-  callApiGallery();
-  let galleryJson = window.localStorage.getItem('gallery');
-  let gallery = JSON.parse(galleryJson);
-
-  let galleryFilter = null;
-
-  if (category === 0){
-      galleryFilter = gallery;
-  }else{
-      galleryFilter = gallery.filter((tableau) => tableau.category.id == category);
-  }
-
-  // Récupération de l'élément du DOM qui accueillera les fiches
+export async function genererGalleryModal(category = 0) {
+try{
   const sectionFiches = document.querySelector(`#modal-gallery`);
   sectionFiches.innerHTML="";
 
+  let gallery = await callApiGallery();
+
+  let galleryFilter = null;
+
+  if (category == 0){
+      galleryFilter = gallery;
+  }else{
+      galleryFilter = gallery.filter((tableau) => parseInt(tableau.category.id) === category);
+  }
+  span.style.width = width;
   for (let i = 0; i < galleryFilter.length; i++) {
 
       const tableau = galleryFilter[i];
       
       // Création d’une balise dédiée à une pièce automobile
       const tableauElement = document.createElement("figure");
-      tableauElement.dataset.id = gallery[i].id;
       tableauElement.classList.add("figure");
       const divElement = document.createElement("div");
       const spanElement = document.createElement("span");
@@ -71,16 +68,14 @@ export function genererGalleryModal(category = 0) {
       const poubelleElement = document.createElement("i");
       poubelleElement.classList.add("fa-solid");
       poubelleElement.classList.add("fa-trash");
+      poubelleElement.dataset.id = tableau.id;
       poubelleElement.ariaHidden="true";
 
       const imageElement = document.createElement("img");
       imageElement.src = tableau.imageUrl;
       const nomElement = document.createElement("figcaption");
       nomElement.innerText = "éditer";
-
-      // nomElement.addEventListener("click",function() {EditerFigue(gallery[i].id);});
-
-      
+   
       tableauElement.appendChild(divElement);
       divElement.appendChild(spanElement);
       spanElement.appendChild(croixElement);
@@ -88,6 +83,44 @@ export function genererGalleryModal(category = 0) {
       tableauElement.appendChild(imageElement);
       tableauElement.appendChild(nomElement);
       sectionFiches.appendChild(tableauElement);
-
+      span.style.width = width;
   }
+
+  let result = TrachApiCall();
+
+}catch(err){
+  console.log(err.message + " - " + err);
+}
+}
+var width = null
+async function TrachApiCall(){
+
+  let btnTrash = document.querySelectorAll(".fa-trash");
+  width = span.style.width;
+  btnTrash.forEach(trash => trash.addEventListener("click", async function (event) {
+      
+      let token = JSON.parse(localStorage.getItem("token"))
+
+      try{
+        const reponse = await fetch(`http://localhost:5678/api/works/${trash.dataset.id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            headers: {"accept": "*/*"},
+            headers: {"Authorization": `Bearer ${token.token}`}
+            
+        })
+
+        const valid = await reponse;
+        
+        if (valid.ok){
+          localStorage.removeItem("gallery");
+          genererGalleryModal();
+        }   
+
+      }catch(err){
+        console.log(err.message + " - " + err.line);
+        return false;
+      }
+      return true;
+  }));
 }
