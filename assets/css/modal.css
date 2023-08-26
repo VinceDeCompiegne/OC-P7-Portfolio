@@ -65,7 +65,6 @@
 }
 #modal-gallery div{
   position: relative;
-
 }
 #modal-gallery span{
   position:absolute;
@@ -108,4 +107,144 @@
   margin-top:30px;
   margin-bottom:40px;
   cursor: pointer;
+}
+
+
+/*********** Modal Ajout d'image ***************/
+
+.modalAdd-arrow{
+  color: black;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  width:20px;
+}
+
+.modalAdd-arrow:hover,
+.modalAdd-arrow:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+#myModalAdd h2{
+	font-family: 'Work Sans' ;
+  font-size:26px;
+  font-weight: 400;
+  text-align: center;
+  color:black;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+.modalAdd-cadre-image{
+  height: 250px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom:15px;
+  margin-top:20px;
+  width:90%;
+  text-align: center;
+	margin-top:5px;
+	display: flex;
+	flex-direction: column;
+  background-color:#E8F1F6;
+}
+
+
+.modalAdd-cadre-image img{
+  margin-top:10px;
+  margin-right: auto;
+  margin-left:auto;
+  /* margin-bottom:15px; */
+  height:50%;
+}
+#myFile{
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+#myFile + label {
+  text-align:center;
+  padding:10px;
+  width:25%;
+  border-radius: 20px;
+  background-color: #1D6154;
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:20px;
+  margin-bottom:0px;
+}
+#myFileSpan{
+  font-family: 'Work Sans' ;
+  font-size:12px;
+  font-weight: 400;
+  text-align: center;
+  color:black;
+  padding:0px;
+  /* margin-top: 60px; */
+  margin-bottom: 25px;
+}
+.modalAdd-input{
+  padding-left: 5%;
+  margin-right: auto;
+  margin-bottom:15px;
+  margin-top:20px;
+  width:90%;
+  text-align: left;
+	margin-top:5px;
+	display: flex;
+	flex-direction: column;
+}
+
+#myTitle{
+	height: 50px;
+  width: 100%;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-left: auto;
+  margin-right: auto;
+}
+#myTitle-lable {
+  margin-top:20px;
+  margin-bottom:20px;
+}
+#mySelect-lable {
+  margin-top:20px;
+  margin-bottom:20px;
+}
+#mySelect{
+	height: 50px;
+  width: 100%;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-left: auto;
+  margin-right: auto;
+}
+.modalAdd-submit{
+  margin-bottom:15px;
+  margin-top:20px;
+	margin-top:5px;
+	display: flex;
+	flex-direction: column;
+}
+#modalBtnAjouter {
+  font-size:14px;
+  font-weight: 400;
+  text-align:center;
+  padding:15px;
+  border-radius: 30px;
+  background-color: #1D6154;
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:20px;
+  margin-bottom:20px;
 }

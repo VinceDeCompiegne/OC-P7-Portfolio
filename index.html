@@ -44,7 +44,7 @@
 				<figure>
 					<img src="./assets/images/sophie-bluel.png" alt="" />
 					<span class="editionBondeau">
-						<i class="fa-regular fa-pen-to-square"></i>  modifier
+						<i class="fa-regular fa-pen-to-square"></i> modifier
 					</span>
 				</figure>
 				<article>
@@ -70,7 +70,7 @@
 				<div class="portfolioTitre">
 					<h2>Mes Projets</h2>
 					<span class="editionBondeau">
-						<i class="fa-regular fa-pen-to-square"></i>  modifier
+						<i class="fa-regular fa-pen-to-square"></i> modifier
 					</span>
 				</div>
 
@@ -104,28 +104,43 @@
 				</ul>
 			</nav>
 		</footer>
-		<!-- Affichage du modal -->
+		<!-- Affichage du modal supression photo -->
 		<div id="myModal" class="modal">
 			<!-- Contenu du modal -->
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<h2>Galerie photo</h2>
 				<div id="modal-gallery"></div>
-				<hr>
+				<hr />
 				<span class="modal-btnAjouter">Ajouter une photo</span>
 				<span class="modal-suppTout">Supprimer la galerie</span>
 			</div>
 		</div>
-		<div id="myModal-ajout-photo" class="modal">
-			<!-- Contenu du modal -->
+		<div id="myModalAdd" class="modal">
+			<!-- Contenu du modal ajout photo -->
 			<div class="modal-content">
-				<span class="close">&times;</span>
+				<span class="modalAdd-arrow">&leftarrow;</span>
 				<h2>Ajout photo</h2>
 				<form action="#">
-					<input type="file" id="myFile" name="filename">
-					<input type="text" id="myTitle" name="myTitle">
-					<hr>
-					<input class="modal-btnAjouter" type="submit" placeholder="">
+					<div class="modalAdd-cadre-image">
+						<img
+							src="./assets/images/modal-ajout-photo.svg"
+							alt="image de fond modal"
+							class="modalAdd-img" />
+						<input type="file" id="myFile" name="filename" required />
+						<label for="myFile">+ Ajouter photo</label>
+						<span id="myFileSpan">jpg, png : 4mo max</span>
+					</div>
+					<div class="modalAdd-input">
+						<label id="myTitle-lable" for="myTitle">Title</label>
+						<input type="text" id="myTitle" name="title" required />
+						<label id="mySelect-lable" for="mySelect">Categorie</label>
+						<select id="mySelect" name="categorie" required></select>
+						<hr />
+					</div>
+					<div class="modalAdd-submit">
+						<input id="modalBtnAjouter" type="submit" placeholder="Valider" />
+					</div>
 				</form>
 			</div>
 		</div>
@@ -133,5 +148,6 @@
 	<script src="./assets/js/logout.js"></script>
 	<script type="module" src="./assets/js/collection.js"></script>
 	<script type="module" src="./assets/js/gallery.js"></script>
-	<script type="module" src="./assets/js/modal_1_Del.js"></script>
+	<script type="module" src="./assets/js/modal_Del.js"></script>
+	<script type="module" src="./assets/js/modal_Add.js"></script>
 </html>

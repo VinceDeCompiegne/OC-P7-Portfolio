@@ -1,14 +1,14 @@
 import { callApiGallery, genererGallery } from './gallery.js';
 
 // Get the modal
-var modal = document.getElementById("myModal");
+const modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementsByClassName("edition-button-edition")[0];
+const btn = document.getElementsByClassName("edition-button-edition")[0];
 // lien sur le modal pour supprimer toute la gallery
-var suppTout = document.getElementsByClassName("modal-suppTout")[0];
+const suppTout = document.getElementsByClassName("modal-suppTout")[0];
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+const span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function () {

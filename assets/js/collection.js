@@ -1,8 +1,8 @@
 import { genererGallery } from './gallery.js';
 
-callApiCategories();
+let result = await genererBtnFilter();
 
-async function callApiCategories(){
+export async function callApiCategories(){
 
     let categories = null;
     let categoriesJson = window.localStorage.getItem('categories');
@@ -32,17 +32,19 @@ async function callApiCategories(){
         categories = JSON.parse(categoriesJson);
     }
 
-    genererBtnFilter(categories);
+    // genererBtnFilter(categories);
+    return categories;
 
 }
 
-function genererBtnFilter(collection) {
-  
+async function genererBtnFilter() {
+
+    const collection =  await callApiCategories();
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiltre = document.querySelector(".filtre");
     sectionFiltre.innerHTML="";
 
-    createBtnDom(0,"Tous")
+    createBtnDom(0,"Tous");
 
     for (let i = 0; i < collection.length; i++) {
 
@@ -50,6 +52,9 @@ function genererBtnFilter(collection) {
 
         createBtnDom(btnFilter.id,btnFilter.name)
     }
+
+    return true;
+
 }
 
 function createBtnDom(id,name){
