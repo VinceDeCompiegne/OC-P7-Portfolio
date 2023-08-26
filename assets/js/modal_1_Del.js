@@ -5,7 +5,8 @@ var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
 var btn = document.getElementsByClassName("edition-button-edition")[0];
-
+// lien sur le modal pour supprimer toute la gallery
+var suppTout = document.getElementsByClassName("modal-suppTout")[0];
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
@@ -43,8 +44,9 @@ try{
   const sectionFiches = document.querySelector(`#modal-gallery`);
   sectionFiches.innerHTML="";
 
+  
   let gallery = await callApiGallery();
-
+  console.log(gallery.length);
   let galleryFilter = null;
 
   if (category == 0){
@@ -52,7 +54,7 @@ try{
   }else{
       galleryFilter = gallery.filter((tableau) => parseInt(tableau.category.id) === category);
   }
-  span.style.width = width;
+
   for (let i = 0; i < galleryFilter.length; i++) {
 
       const tableau = galleryFilter[i];
@@ -83,44 +85,99 @@ try{
       tableauElement.appendChild(imageElement);
       tableauElement.appendChild(nomElement);
       sectionFiches.appendChild(tableauElement);
-      span.style.width = width;
+
   }
 
-  let result = TrachApiCall();
+  let deleted = await TrachApiCall();
+  if (deleted==true){
+    console.log(result);
+    return result;
+  }
+
 
 }catch(err){
   console.log(err.message + " - " + err);
 }
 }
-var width = null
+
+
 async function TrachApiCall(){
 
   let btnTrash = document.querySelectorAll(".fa-trash");
-  width = span.style.width;
+
   btnTrash.forEach(trash => trash.addEventListener("click", async function (event) {
       
       let token = JSON.parse(localStorage.getItem("token"))
-
+      
       try{
-        const reponse = await fetch(`http://localhost:5678/api/works/${trash.dataset.id}`, {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            headers: {"accept": "*/*"},
-            headers: {"Authorization": `Bearer ${token.token}`}
-            
-        })
 
-        const valid = await reponse;
-        
-        if (valid.ok){
-          localStorage.removeItem("gallery");
-          genererGalleryModal();
-        }   
+        const valid = await supprime(trash.dataset.id,token.token);
+
+         if (valid.ok){
+              localStorage.removeItem("gallery");
+              let result = await genererGalleryModal();
+              console.log(result);
+              return true;
+         }   
 
       }catch(err){
-        console.log(err.message + " - " + err.line);
+        console.log(err.message);
         return false;
       }
-      return true;
+      
   }));
+}
+
+suppTout.addEventListener('click', async (event) => {
+
+  let token = JSON.parse(localStorage.getItem("token"))
+
+  try{
+
+      let btnTrash = document.querySelectorAll(".fa-trash");
+
+      let gallery = await callApiGallery();
+
+      let galleryFilter = gallery;
+  
+      for (let i=0;i<galleryFilter.length;){
+
+        let valid = await supprime(btnTrash[i].dataset.id,token.token); 
+
+        if (valid.ok){
+          i++;
+        }  
+      };
+
+    }catch(err){
+      console.log(err.message);
+      return false;
+    }
+
+    localStorage.removeItem("gallery");
+    return await genererGalleryModal();
+
+});
+
+async function supprime(num,token){
+
+  try{
+    const rep = await fetch(`http://localhost:5678/api/works/${num}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        headers: {"accept": "*/*"},
+        headers: {"Authorization": `Bearer ${token}`}
+    })
+
+    const valid = await rep;
+        
+    if (valid.ok){
+      return(valid);
+    }else{
+      return(valid);
+    }
+  }catch(err){
+    console.log(err.message);
+    return false;
+  }
 }
