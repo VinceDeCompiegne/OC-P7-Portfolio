@@ -46,7 +46,7 @@ try{
 
   
   let gallery = await callApiGallery();
-  console.log(gallery.length);
+  //console.log(gallery.length);
   let galleryFilter = null;
 
   if (category == 0){
@@ -90,13 +90,13 @@ try{
 
   let deleted = await TrachApiCall();
   if (deleted==true){
-    console.log(result);
+    //console.log(result);
     return result;
   }
 
 
 }catch(err){
-  console.log(err.message + " - " + err);
+  //console.log(err.message + " - " + err);
 }
 }
 
@@ -116,12 +116,12 @@ async function TrachApiCall(){
          if (valid.ok){
               localStorage.removeItem("gallery");
               let result = await genererGalleryModal();
-              console.log(result);
+              //console.log(result);
               return true;
          }   
 
       }catch(err){
-        console.log(err.message);
+        //console.log(err.message);
         return false;
       }
       
@@ -150,7 +150,7 @@ suppTout.addEventListener('click', async (event) => {
       };
 
     }catch(err){
-      console.log(err.message);
+      //console.log(err.message);
       return false;
     }
 
@@ -177,7 +177,7 @@ async function supprime(num,token){
       return(valid);
     }
   }catch(err){
-    console.log(err.message);
+    //console.log(err.message);
     return false;
   }
 }
