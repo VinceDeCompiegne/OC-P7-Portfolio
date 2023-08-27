@@ -53,10 +53,7 @@ formulaireConnexion.addEventListener("submit", async function (event) {
                 console.log("ERROR : " + err.message)
 
             }
-
-
-
-    
+   
             // Récupération des identifiants depuis l'API
 
         } else {
@@ -65,9 +62,6 @@ formulaireConnexion.addEventListener("submit", async function (event) {
 
         lienLogin.textContent = "logout";
 
-        //  test que la valeur est bien stocké
-        //  token = window.localStorage.getItem('token');
-        // console.log(jeton);
 
 
 }

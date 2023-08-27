@@ -121,21 +121,21 @@
 			<div class="modal-content">
 				<span class="modalAdd-arrow">&leftarrow;</span>
 				<h2>Ajout photo</h2>
-				<form action="#">
+				<form id="formAdd" action="#" enctype="multipart/form-data">
 					<div class="modalAdd-cadre-image">
 						<img
 							src="./assets/images/modal-ajout-photo.svg"
 							alt="image de fond modal"
-							class="modalAdd-img" />
-						<input type="file" id="myFile" name="filename" required />
-						<label for="myFile">+ Ajouter photo</label>
+							id="modalAdd-img" />
+						<input type="file" id="myFile" name="image" required />
+						<label id="myFileLable" for="myFile">+ Ajouter photo</label>
 						<span id="myFileSpan">jpg, png : 4mo max</span>
 					</div>
 					<div class="modalAdd-input">
 						<label id="myTitle-lable" for="myTitle">Title</label>
 						<input type="text" id="myTitle" name="title" required />
 						<label id="mySelect-lable" for="mySelect">Categorie</label>
-						<select id="mySelect" name="categorie" required></select>
+						<select id="mySelect" name="category" required></select>
 						<hr />
 					</div>
 					<div class="modalAdd-submit">

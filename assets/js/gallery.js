@@ -36,12 +36,8 @@ export async function callApiGallery(){
 }
 
 export async function genererGallery(category = 0) {
-
-    // let galleryJson = window.localStorage.getItem('gallery');
     
     let gallery = await  callApiGallery();
-
-    // let gallery = JSON.parse(galleryJson);
 
     let galleryFilter = null;
 
@@ -50,7 +46,7 @@ export async function genererGallery(category = 0) {
     }else{
         galleryFilter = gallery.filter((tableau) => tableau.category.id == category);
     }
-    console.log(galleryFilter);
+    // console.log(galleryFilter);
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiches = document.querySelector(`.gallery`);
     sectionFiches.innerHTML="";
