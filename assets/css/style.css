@@ -30,6 +30,10 @@ time, mark, audio, video {
 a {
 	text-decoration:none;
 }
+a:before {
+	text-decoration:none;
+	color: #B1663C;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -214,6 +218,16 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
+input[type="submit"]:hover{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #0E2F28;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
 
 footer nav ul {
 	display: flex;
@@ -271,8 +285,8 @@ footer nav ul {
 	margin-bottom:30px;
 }
 .filtre-btn:hover{
-	background-color: #B1663C;
-	border-color: #B1663C;
+	background-color: #0E2F28;
+	border-color: #0E2F28;
 	color: white;
 	cursor:pointer;
 }
