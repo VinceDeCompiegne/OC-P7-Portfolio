@@ -16,6 +16,12 @@ const modalMyTitle = document.getElementById("myTitle");
 const modalMyName = document.getElementById("myName");
 //Get the photo
 const modalMyPhoto = document.getElementById("modalAdd-img");
+//Get div after selection
+const modalMyCaptionPhotoAff = document.getElementsByClassName("modalAdd-cadre-image-aff")[0];
+//Get img after selection
+const modalMyPhotoAff = document.getElementById("modalAdd-img-aff");
+//Get the caption select photo
+const modalAddPhotoSelect = document.getElementsByClassName("modalAdd-cadre-image-select")[0];
 
 // Get the button that opens the modal
 const btn = document.getElementsByClassName("modal-btnAjouter")[0];
@@ -27,6 +33,7 @@ const modalMySelect = document.getElementById("mySelect");
 // When the user clicks the button, open the modal 
 btn.onclick = async function () {
     modalDelete.style.display = "none";
+    resetModalAdd();
     let result = await genererOptionMySelect()
     modalAdd.style.display = "block";
   };
@@ -35,18 +42,40 @@ btn.onclick = async function () {
   arrowRetour.onclick = function() {
     modalAdd.style.display = "none";
     modalDelete.style.display = "block";
+
+    modalForm.reset();
   }
 
   modalMyFile.addEventListener("change",(event)=>{
-    modalMyPhoto.src=`./assets/images/${modalMyFile.files[0].name}`;
+    modalMyPhotoAff.src=`./assets/images/${modalMyFile.files[0].name}`;
+    modalAddPhotoSelect.style.opacity= 0;
+    modalAddPhotoSelect.style.zIndex= -1;
+    modalMyCaptionPhotoAff.style.opacity= 1;
+    modalMyCaptionPhotoAff.style.zIndex= 1;
   });
+
+  modalMyPhotoAff.addEventListener("click",(event)=>{
+
+    resetModalAdd();
+
+  });
+
+export const resetModalAdd = () => {
+  modalMyPhotoAff.src="";
+  modalAddPhotoSelect.style.opacity= 1;
+  modalAddPhotoSelect.style.zIndex= 1;
+  modalMyCaptionPhotoAff.style.opacity= 0;
+  modalMyCaptionPhotoAff.style.zIndex= -1;
+
+  modalForm.reset();
+}
 
 modalForm.addEventListener("submit", async (event) => {
 
   event.preventDefault();
 
 
-  //  try{
+  try{
 
     const data = new FormData()
     data.append('image', modalMyFile.files[0]);
@@ -63,13 +92,11 @@ modalForm.addEventListener("submit", async (event) => {
                    },
          body: data,
 
-  });
-    // let result = await reponse.json();
+    });
+
     // console.log(result);
 
     if(await reponse.json()){
-      // modalMyName.caption = "";
-      // modalMyTitle.caption = "";
       localStorage.removeItem("gallery");
       let result = await genererGallery();
       result = await genererGalleryModal();
@@ -79,11 +106,11 @@ modalForm.addEventListener("submit", async (event) => {
       return true;
     }
 
-// }catch(err){
+}catch(err){
    
-//     console.log("ERROR : " + err.message)
+    console.log("ERROR : " + err.message)
 
-// }
+}
 
 
 });

@@ -13,8 +13,10 @@ lienLogin.addEventListener("click", async function (event) {
         event.preventDefault();
         localStorage.removeItem("token");
         lienLogin.textContent = "login";
-        if (bandeauEdition.length > 0) bandeauEdition.forEach(a => a.style.display="none");
+        // if (bandeauEdition.length > 0) bandeauEdition.forEach(a => a.style.display="none"); 
     }
+
+    logout();
     
 });
 
@@ -31,5 +33,8 @@ function logout(){
         lienLogin.textContent = "login";
         if (bandeauEdition.length > 0) bandeauEdition.forEach(a => a.style.display="none");
     }
+
+    const sectionFiltre = document.querySelector(".filtre");
+    if (jeton!==null) {sectionFiltre.style.opacity = 0} else {sectionFiltre.style.opacity = 1};
 
 }

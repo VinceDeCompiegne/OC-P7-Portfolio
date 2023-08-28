@@ -39,6 +39,7 @@ export async function callApiCategories(){
 
 async function genererBtnFilter() {
 
+
     const collection =  await callApiCategories();
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiltre = document.querySelector(".filtre");

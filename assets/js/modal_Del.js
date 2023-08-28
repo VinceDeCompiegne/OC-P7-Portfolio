@@ -120,6 +120,7 @@ async function TrachApiCall(){
          if (valid.ok){
               localStorage.removeItem("gallery");
               let result = await genererGalleryModal();
+               result = await genererGallery();
               //console.log(result);
               return true;
          }   
