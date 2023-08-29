@@ -35,6 +35,9 @@ function logout(){
     }
 
     const sectionFiltre = document.querySelector(".filtre");
-    if (jeton!==null) {sectionFiltre.style.opacity = 0} else {sectionFiltre.style.opacity = 1};
+    if (sectionFiltre!==null){
+        if (jeton!==null) {sectionFiltre.style.opacity = 0} else {sectionFiltre.style.opacity = 1};
+    }
+    
 
 }
