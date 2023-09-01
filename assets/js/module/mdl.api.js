@@ -9,20 +9,29 @@ export async function callApiCategories(){
 
          try{
 
-            const reponse = await fetch('http://localhost:5678/api/categories', {
+            const response = await fetch('http://localhost:5678/api/categories', {
                  method: "GET",
                  headers: { "Content-Type": "application/json" }
             });
-            categories = await reponse.json();
 
-            // Transformation des identifiants en JSON
-            categoriesJson = JSON.stringify(categories);
-            
-            window.localStorage.setItem("categorie", categoriesJson);
+            if (response.ok) {
+
+                categories = await response.json();
+
+                // Transformation des identifiants en JSON
+                categoriesJson = JSON.stringify(categories);
+                
+                window.localStorage.setItem("categorie", categoriesJson);
+
+            }else{
+
+                throw new Error('Erreur réseau : ' + response.statusText);
+
+            }
 
          }catch(err){
            
-             console.log("ERROR : " + err.message)
+            throw new Error("ERROR : " + err.message);
 
          }
 
@@ -44,21 +53,30 @@ export async function callApiGallery(){
 
          try{
 
-            const reponse = await fetch('http://localhost:5678/api/works', {
+            const response = await fetch('http://localhost:5678/api/works', {
                  method: "GET",
                  headers: { "Content-Type": "application/json" }
             });
-            gallery = await reponse.json();
 
-            // Transformation des identifiants en JSON
-            galleryJson = JSON.stringify(gallery);
-            window.localStorage.setItem("gallery", galleryJson);
-            return gallery;
+            if (response.ok) {
+
+                gallery = await response.json();
+
+                // Transformation des identifiants en JSON
+                galleryJson = JSON.stringify(gallery);
+                window.localStorage.setItem("gallery", galleryJson);
+
+                return gallery;
+
+            } else {
+
+                throw new Error('Erreur réseau : ' + response.statusText);
+
+            }
 
          }catch(err){
            
-             console.log("ERROR : " + err.message)
-
+             throw new Error("ERROR : " + err.message);
 
          }
 
@@ -83,32 +101,34 @@ export async function callApiLogin(email,password){
 
          try{
 
-             const reponse = await fetch('http://localhost:5678/api/users/login', {
+             const response = await fetch('http://localhost:5678/api/users/login', {
                  method: "POST",
                  headers: { "Content-Type": "application/json" },
                  body: JSON.stringify(formulaireIdentification)
              });
-             let token = await reponse.json();
 
-             // Transformation des identifiants en JSON
-             jeton = JSON.stringify(token);
-             if (((jeton.substring(0, 9) === '{"error":'))||((jeton.substring(0, 11) === '{"message":'))) {
-                 console.log("Vous avez entré de mauvais identifiants");
+             if (response.ok) {
 
-                 callApiLoginMsgErr("block","Vous avez entré de mauvais identifiants");
+                let token = await response.json();
 
-             }else{
+                // Transformation des identifiants en JSON
+                jeton = JSON.stringify(token);
 
-                 callApiLoginMsgErr();
-                 // Stockage des informations dans le localStorage
-                 window.localStorage.setItem("token", jeton);
-             }
+                callApiLoginMsgErr();
 
+                window.localStorage.setItem("token", jeton);
+ 
+            }else{
+
+                callApiLoginMsgErr("block","Vous avez entré de mauvais identifiants");
+
+            }
+            
          }catch(err){
 
-             callApiLoginMsgErr("block","Probléme de connection : veuillez essayer plus tard");
+            callApiLoginMsgErr("block","Probléme de connection : veuillez essayer plus tard");
 
-             console.log("ERROR : " + err.message)
+            throw new Error("ERROR : " + err.message);
 
          }
 
@@ -134,16 +154,24 @@ export async function callApiAdd(file,title,category){
 
         const token = JSON.parse(localStorage.getItem("token"));
 
-        const reponse = await fetch('http://localhost:5678/api/works', {
+        const response = await fetch('http://localhost:5678/api/works', {
             method: "POST",
             headers: {
                     "Authorization": `Bearer ${token.token}`,
                     },
             body: data,
     
-        });    
+        });  
 
-        return reponse;
+        if (response.ok) {
+
+            return await response;
+
+        }else{
+
+            throw new Error('Erreur réseau : ' + response.statusText);
+
+        }
 
     }catch(err){
 
@@ -156,17 +184,25 @@ export async function callApiAdd(file,title,category){
 export async function callApiSupp(num,token){
 
     try{
-      const rep = await fetch(`http://localhost:5678/api/works/${num}`, {
+      const response = await fetch(`http://localhost:5678/api/works/${num}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           headers: {"accept": "*/*"},
           headers: {"Authorization": `Bearer ${token}`}
       });
-  
-      const valid = await rep;
+
+    if (response.ok) {
+
+        const valid = await response;
    
-      return valid;
+        return valid;
   
+    }else{
+
+        throw new Error('Erreur réseau : ' + response.statusText);
+
+    }
+
     }catch(err){
       
       throw new Error("Error : " + err.message);

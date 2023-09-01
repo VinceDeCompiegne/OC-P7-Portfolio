@@ -8,7 +8,7 @@ export async function genererGalleryDom(id = 0){
 
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiches = document.querySelector(`.gallery`);
-    sectionFiches.innerHTML="";
+    if (sectionFiches !== null){sectionFiches.innerHTML="";}else{return 0;}
 
     for (let i = 0; i < galleryFilter.length; i++) {
 
