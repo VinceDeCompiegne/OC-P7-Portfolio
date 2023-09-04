@@ -1,5 +1,5 @@
-import {callApiGallery} from "../module/mdl.api.js";
-import {genererGalleryDom} from "../vue/vue.gallery.js";
+import { callApiGallery } from "../module/mdl.api.js";
+import { genererGalleryDom } from "../vue/vue.gallery.js";
 
 
 genererGalleryDom();

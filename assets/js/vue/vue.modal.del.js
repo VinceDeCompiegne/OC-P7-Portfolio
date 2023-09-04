@@ -1,5 +1,4 @@
 import { modalFilterGalery, modalDeltrachCall  } from "../controler/ctrl.modal.del.js"
-import { callApiGallery } from "../module/mdl.api.js";
 
 export async function genererGalleryModal(category = 0) {
     try{

@@ -95,7 +95,6 @@ export async function callApiLogin(email,password){
      }
 
      let jeton = window.localStorage.getItem('token');
- 
 
      if (jeton === null) {
 
@@ -119,14 +118,15 @@ export async function callApiLogin(email,password){
                 window.localStorage.setItem("token", jeton);
  
             }else{
-
-                callApiLoginMsgErr("block","Vous avez entré de mauvais identifiants");
-
+                if (response.status === 401) {
+                    callApiLoginMsgErr("block","Vous avez entré de mauvais identifiants");
+                }else{
+                    callApiLoginMsgErr("block","Probléme de connection : veuillez essayer plus tard.");
+                    throw new Error('Erreur réseau : ' + response.statusText);
+                }
             }
             
          }catch(err){
-
-            callApiLoginMsgErr("block","Probléme de connection : veuillez essayer plus tard");
 
             throw new Error("ERROR : " + err.message);
 
@@ -135,12 +135,13 @@ export async function callApiLogin(email,password){
          // Récupération des identifiants depuis l'API
 
      } else {
-         jeton = JSON.parse(jeton);
+         return jeton;
      }
 
-     document.querySelector(".lien-login").textContent = "logout";
+    //  document.querySelector(".lien-login").textContent = "logout";
 
 }
+
 
 
 export async function callApiAdd(file,title,category){
@@ -210,3 +211,4 @@ export async function callApiSupp(num,token){
     }
 
 }
+

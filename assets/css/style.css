@@ -252,6 +252,7 @@ footer nav ul {
 }
 .edition-button-edition{
 	margin: auto;
+	cursor: pointer;
 }
 .edition-button-changement{
 	margin: auto;

@@ -10,7 +10,7 @@ lienLogin.addEventListener("click", async function (event) {
     if(jeton !== null){
         event.preventDefault();
         localStorage.removeItem("token");
-        lienLogin.textContent = "login";
+        // lienLogin.textContent = "login";
     }
 
     logout();
