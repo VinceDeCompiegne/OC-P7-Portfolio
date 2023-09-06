@@ -1,5 +1,6 @@
-const add = '82.64.219.243';
+// const add = '82.64.219.243';
 // const add = 'localhost';
+const add = 'notemaphoto.ovh';
 
 import { callApiLoginMsgErr } from "../vue/vue.logout.js";
 
@@ -12,7 +13,7 @@ export async function callApiCategories(){
 
          try{
 
-            const response = await fetch(`http://${add}:5678/api/categories`, {
+            const response = await fetch(`https://${add}/api/categories`, {
                  method: "GET",
                  headers: { "Content-Type": "application/json" }
             });
@@ -56,7 +57,7 @@ export async function callApiGallery(){
 
          try{
 
-            const response = await fetch(`http://${add}:5678/api/works`, {
+            const response = await fetch(`https://${add}/api/works`, {
                  method: "GET",
                  headers: { "Content-Type": "application/json" }
             });
@@ -103,7 +104,7 @@ export async function callApiLogin(email,password){
 
          try{
 
-             const response = await fetch(`http://${add}:5678/api/users/login`, {
+             const response = await fetch(`https://${add}/api/users/login`, {
                  method: "POST",
                  headers: { "Content-Type": "application/json" },
                  body: JSON.stringify(formulaireIdentification)
@@ -158,7 +159,7 @@ export async function callApiAdd(file,title,category){
 
         const token = JSON.parse(localStorage.getItem("token"));
 
-        const response = await fetch(`http://${add}:5678/api/works`, {
+        const response = await fetch(`https://${add}/api/works`, {
             method: "POST",
             headers: {
                     "Authorization": `Bearer ${token.token}`,
@@ -188,7 +189,7 @@ export async function callApiAdd(file,title,category){
 export async function callApiSupp(num,token){
 
     try{
-      const response = await fetch(`http://${add}:5678/api/works/${num}`, {
+      const response = await fetch(`https://${add}/api/works/${num}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           headers: {"accept": "*/*"},
