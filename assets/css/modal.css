@@ -1,41 +1,277 @@
+/* The Modal (background) */
 .modal {
-    position: fixed;
-    left: 0;
-    top: -50px;
-    width: 100%;
-    height: 100%;
-    background-color: #cccccc;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.3);
-    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-  }
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%);
-    background-color: #eeeeee;
-    padding: 1rem 1.5rem;
-    width: 24rem;
-    border-radius: 0.5rem;
-  }
-  .close-button {
-    float: right;
-    width: 1rem;
-    line-height: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 30px;
-    background-color: #eeeeee;
-  }
-  .close-button:hover {
-    background-color: #adadad;
-  }
-  .show-modal {
-    opacity: 0.9;
-    visibility: visible;
-    transform: scale(1);
-    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-  }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 20px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  /*height:800px; /*Height of the box*/
+  border-radius: 12px;
+  margin-bottom: 50px;
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  width:20px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+#myModal h2{
+	font-family: 'Work Sans' ;
+  font-size:26px;
+  font-weight: 400;
+  text-align: center;
+  color:black;
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+#modal-gallery{
+  width:80%;
+  align-items: center;
+  display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#modal-gallery img{
+  width:100%;
+  height:10%;
+}
+#modal-gallery div{
+  position: relative;
+}
+#modal-gallery span{
+  position:absolute;
+  text-align: right;
+  top: 2px;
+  right: 2px;
+}
+#modal-gallery i{
+  color:white;
+  background-color: black;
+  padding:2px;
+  margin:2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+#modal-gallery figcaption{
+  cursor: pointer;
+}
+#myModal hr{
+  color: #B3B3B3;
+  border: 1px solid #B3B3B3;
+  width:80%;
+  margin-top:50px;
+}
+
+
+.modal-btnAjouter{
+  text-align:center;
+  padding:10px;
+  margin-top:40px;
+  width:30%;
+  border-radius: 20px;
+  background-color: #1D6154;
+  color: white;
+  cursor: pointer;
+}
+.modal-suppTout{
+  text-align:center;
+  color:red;
+  margin-top:30px;
+  margin-bottom:40px;
+  cursor: pointer;
+}
+
+
+/*********** Modal Ajout d'image ***************/
+
+.modalAdd-arrow{
+  color: black;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  width:20px;
+}
+
+.modalAdd-arrow:hover,
+.modalAdd-arrow:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+#myModalAdd h2{
+	font-family: 'Work Sans' ;
+  font-size:26px;
+  font-weight: 400;
+  text-align: center;
+  color:black;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+.modalAdd-cadre-image{
+  position:relative;
+}
+.modalAdd-cadre-image-select{
+  height: 250px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom:15px;
+  margin-top:20px;
+  width:90%;
+  text-align: center;
+	margin-top:5px;
+	display: flex;
+	flex-direction: column;
+  background-color:#E8F1F6;
+  position:relative;
+  /* z-index:auto; */
+  opacity:1;
+}
+.modalAdd-cadre-image-select img{
+  margin-top:10px;
+  margin-right: auto;
+  margin-left:auto;
+  /* margin-bottom:15px; */
+  height:50%;
+}
+.modalAdd-cadre-image-aff{
+  top:-5px;
+  left:5%;
+  height: 250px;
+  width:90%;
+  text-align: center;
+	margin-top:5px;
+	display: flex;
+	flex-direction: column;
+  background-color:#E8F1F6;
+  position:absolute;
+  z-index:-1;
+  opacity:0;
+}
+.modalAdd-cadre-image-aff img{
+  margin-top:10px;
+  margin-right: auto;
+  margin-left:auto;
+  height:90%;
+}
+#myFile{
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+#myFile + label {
+  text-align:center;
+  padding:10px;
+  width:25%;
+  border-radius: 20px;
+  background-color: #1D6154;
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:20px;
+  margin-bottom:0px;
+}
+#myFileSpan{
+  font-family: 'Work Sans' ;
+  font-size:12px;
+  font-weight: 400;
+  text-align: center;
+  color:black;
+  padding:0px;
+  margin-bottom: 25px;
+}
+.modalAdd-input{
+  padding-left: 5%;
+  margin-right: auto;
+  margin-bottom:15px;
+  margin-top:20px;
+  width:90%;
+  text-align: left;
+	margin-top:5px;
+	display: flex;
+	flex-direction: column;
+}
+
+#myTitle{
+	height: 50px;
+  width: 100%;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-left: auto;
+  margin-right: auto;
+}
+#myTitle-lable {
+  margin-top:20px;
+  margin-bottom:20px;
+}
+#mySelect-lable {
+  margin-top:20px;
+  margin-bottom:20px;
+}
+#mySelect{
+	height: 50px;
+  width: 100%;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-left: auto;
+  margin-right: auto;
+}
+.modalAdd-submit{
+  margin-bottom:15px;
+  margin-top:20px;
+	margin-top:5px;
+	display: flex;
+	flex-direction: column;
+}
+#modalBtnAjouter {
+  font-size:14px;
+  font-weight: 400;
+  text-align:center;
+  padding:15px;
+  border-radius: 30px;
+  background-color: #1D6154;
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+.modal-btnAjouter:hover, #modalBtnAjouter:hover{
+	color: white;
+	background-color: #0E2F28;
+}

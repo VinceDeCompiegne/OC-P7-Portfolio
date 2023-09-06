@@ -20,7 +20,7 @@
 		<link rel="stylesheet" href="./assets/css/modal.css" />
 	</head>
 	<body>
-		<div class="edition-bondeau-administration">
+		<div class="editionBondeau edition-bondeau-administration">
 			<div class="edition-boutons">
 				<div class="edition-button-edition">
 					<i class="fa-regular fa-pen-to-square"></i> Mode édition
@@ -32,9 +32,27 @@
 			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 			<nav>
 				<ul>
-					<li><a href="/index.html" class="lien">projets</a></li>
-					<li><a href="/index.html#contact" class="lien">contact</a></li>
-					<li><a href="/login.html" class="lien-login">login</a></li>
+					<li>
+						<a
+							href="./OpenClassRooms-Projet_07-FrontEnd_Javascript/index.html"
+							class="lien"
+							>projets</a
+						>
+					</li>
+					<li>
+						<a
+							href="./OpenClassRooms-Projet_07-FrontEnd_Javascript/index.html#contact"
+							class="lien"
+							>contact</a
+						>
+					</li>
+					<li>
+						<a
+							href="./OpenClassRooms-Projet_07-FrontEnd_Javascript/login.html"
+							class="lien-login"
+							>login</a
+						>
+					</li>
 					<li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
 				</ul>
 			</nav>
@@ -43,6 +61,9 @@
 			<section id="introduction">
 				<figure>
 					<img src="./assets/images/sophie-bluel.png" alt="" />
+					<span class="editionBondeau">
+						<i class="fa-regular fa-pen-to-square"></i> modifier
+					</span>
 				</figure>
 				<article>
 					<h2>Designer d'espace</h2>
@@ -64,72 +85,19 @@
 				</article>
 			</section>
 			<section id="portfolio">
-				<h2>Mes Projets</h2>
+				<div class="portfolioTitre">
+					<h2>Mes Projets</h2>
+					<span class="editionBondeau">
+						<i class="fa-regular fa-pen-to-square"></i> modifier
+					</span>
+				</div>
+
+				<div class="filtre"></div>
 				<div class="gallery">
-					<figure>
+					<!-- <figure>
 						<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
 						<figcaption>Abajour Tahina</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/appartement-paris-v.png"
-							alt="Appartement Paris V" />
-						<figcaption>Appartement Paris V</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/restaurant-sushisen-londres.png"
-							alt="Restaurant Sushisen - Londres" />
-						<figcaption>Restaurant Sushisen - Londres</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/la-balisiere.png"
-							alt="Villa “La Balisiere” - Port Louis" />
-						<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/structures-thermopolis.png"
-							alt="Structures Thermopolis" />
-						<figcaption>Structures Thermopolis</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/appartement-paris-x.png"
-							alt="Appartement Paris X" />
-						<figcaption>Appartement Paris X</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/le-coteau-cassis.png"
-							alt="Pavillon “Le coteau” - Cassis" />
-						<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/villa-ferneze.png"
-							alt="Villa Ferneze - Isola d’Elba" />
-						<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/appartement-paris-xviii.png"
-							alt="Appartement Paris XVIII" />
-						<figcaption>Appartement Paris XVIII</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/bar-lullaby-paris.png"
-							alt="Bar “Lullaby” - Paris" />
-						<figcaption>Bar “Lullaby” - Paris</figcaption>
-					</figure>
-					<figure>
-						<img
-							src="assets/images/hotel-first-arte-new-delhi.png"
-							alt="Hotel First Arte - New Delhi" />
-						<figcaption>Hotel First Arte - New Delhi</figcaption>
-					</figure>
+					</figure>-->
 				</div>
 			</section>
 			<section id="contact">
@@ -137,11 +105,16 @@
 				<p>Vous avez un projet ? Discutons-en !</p>
 				<form action="#" method="post">
 					<label for="name">Nom</label>
-					<input type="text" name="name" id="name" />
+					<input type="text" name="name" id="name" required />
 					<label for="email">Email</label>
-					<input type="email" name="email" id="email" />
+					<input type="email" name="email" id="email" required />
 					<label for="message">Message</label>
-					<textarea name="message" id="message" cols="30" rows="10"></textarea>
+					<textarea
+						name="message"
+						id="message"
+						cols="30"
+						rows="10"
+						required></textarea>
 					<input type="submit" value="Envoyer" />
 				</form>
 			</section>
@@ -154,15 +127,58 @@
 				</ul>
 			</nav>
 		</footer>
-		<!-- Affichage du modal -->
-		<section class="modal">
+		<!-- Affichage du modal supression photo -->
+		<div id="myModal" class="modal">
+			<!-- Contenu du modal -->
 			<div class="modal-content">
-				<span class="close-button">&times;</span>
-				<h2>Ceci est un Modal</h2>
+				<span class="close">&times;</span>
+				<h2>Galerie photo</h2>
+				<div id="modal-gallery"></div>
+				<hr />
+				<span class="modal-btnAjouter">Ajouter une photo</span>
+				<span class="modal-suppTout">Supprimer la galerie</span>
 			</div>
-		</section>
+		</div>
+		<div id="myModalAdd" class="modal">
+			<!-- Contenu du modal ajout photo -->
+			<div class="modal-content">
+				<span class="modalAdd-arrow">&leftarrow;</span>
+				<h2>Ajout photo</h2>
+				<form id="formAdd" action="#" enctype="multipart/form-data">
+					<div class="modalAdd-cadre-image">
+						<div class="modalAdd-cadre-image-select">
+							<img
+								src="./assets/images/modal-ajout-photo.svg"
+								alt="image de fond modal"
+								id="modalAdd-img" />
+							<input type="file" id="myFile" name="image" required />
+							<label id="myFileLable" for="myFile">+ Ajouter photo</label>
+							<span id="myFileSpan">jpg, png : 4mo max</span>
+						</div>
+						<div class="modalAdd-cadre-image-aff">
+							<img
+								src="./assets/images/modal-ajout-photo.svg"
+								alt="image de fond modal"
+								id="modalAdd-img-aff" />
+						</div>
+					</div>
+					<div class="modalAdd-input">
+						<label id="myTitle-lable" for="myTitle">Title</label>
+						<input type="text" id="myTitle" name="title" required />
+						<label id="mySelect-lable" for="mySelect">Categorie</label>
+						<select id="mySelect" name="category" required></select>
+						<hr />
+					</div>
+					<div class="modalAdd-submit">
+						<input id="modalBtnAjouter" type="submit" placeholder="Valider" />
+					</div>
+				</form>
+			</div>
+		</div>
 	</body>
-	<script src="./assets/js/logout.js"></script>
-	<script src="./assets/js/tableau.js"></script>
-	<script src="./assets/js/modalEdition.js"></script>
+	<script type="module" src="./assets/js/controler/ctrl.logout.js"></script>
+	<script type="module" src="./assets/js/controler/ctrl.collection.js"></script>
+	<script type="module" src="./assets/js/controler/ctrl.gallery.js"></script>
+	<script type="module" src="./assets/js/controler/ctrl.modal.del.js"></script>
+	<script type="module" src="./assets/js/controler/ctrl.modal.add.js"></script>
 </html>
