@@ -2,6 +2,7 @@
 // const add = 'localhost';
 const add = 'notemaphoto.ovh';
 
+
 import { callApiLoginMsgErr } from "../vue/vue.logout.js";
 
 export async function callApiCategories(){
