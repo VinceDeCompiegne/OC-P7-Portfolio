@@ -1,5 +1,3 @@
-// const add = '82.64.219.243';
-// const add = 'localhost';
 const add = 'notemaphoto.ovh';
 
 
