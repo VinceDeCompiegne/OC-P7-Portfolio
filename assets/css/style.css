@@ -149,20 +149,18 @@ li:hover {
 	font-size: 14px;
 	font-weight:400;
 	color:black;
-	width:200px;
+	width:40px;
 	padding:0;
 	margin:0;
 	margin-left:auto;
 	margin-right:auto;
 }
-#portfolio.portfolioTitre{
+#portfolioTitre{
 
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-
-
+	display: flex;
+	width:250px;
+	margin-left:auto;
+	margin-right:auto;
 }
 .gallery {
 	width: 100%;
