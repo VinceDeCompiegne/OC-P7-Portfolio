@@ -1,13 +1,18 @@
-import {genererGalleryDom} from "./vue.gallery.js";
+import {
+    genererGalleryDom
+} from "./vue.gallery.js";
 
-export function createBtnDom(id,name){
+export function createBtnDom(id, name) {
 
     const sectionFiltre = document.querySelector(".filtre");
     const divElement = document.createElement("div");
     divElement.dataset.id = id;
 
-    
-    divElement.addEventListener("click",function(event) {BtnFilterClick(id);genererGalleryDom(id);});
+
+    divElement.addEventListener("click", function (event) {
+        BtnFilterClick(id);
+        genererGalleryDom(id);
+    });
 
     const txtElement = document.createElement("p");
     txtElement.innerText = name;
@@ -18,9 +23,9 @@ export function createBtnDom(id,name){
 
 }
 
-function BtnFilterClick(id){
+function BtnFilterClick(id) {
     let btn = document.getElementsByClassName("selected");
-    for(let i=0;i<btn.length;i++){
+    for (let i = 0; i < btn.length; i++) {
         btn[i].classList.remove("selected");
     }
     let btnSelected = document.getElementsByClassName('filtre-btn');

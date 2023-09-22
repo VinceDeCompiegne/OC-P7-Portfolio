@@ -1,58 +1,71 @@
-import { callApiCategories, callApiAdd } from "../module/mdl.api.js";
-import { createOptSelect, ModalAddOpen, resetModalAdd, modalAddPhotoSelected, modalAddClose  } from "../vue/vue.modal.add.js";
-import { genererGalleryDom } from '../vue/vue.gallery.js';
-import { genererGalleryModal } from "../vue/vue.modal.del.js";
+import {
+  callApiCategories,
+  callApiAdd
+} from "../module/mdl.api.js";
+import {
+  createOptSelect,
+  ModalAddOpen,
+  resetModalAdd,
+  modalAddPhotoSelected,
+  modalAddClose
+} from "../vue/vue.modal.add.js";
+import {
+  genererGalleryDom
+} from '../vue/vue.gallery.js';
+import {
+  genererGalleryModal
+} from "../vue/vue.modal.del.js";
 
 export async function genererOptionMySelect() {
 
-    const collection =  await callApiCategories();
-    // Récupération de l'élément du DOM qui accueillera les fiches
-    const modalMySelect = document.getElementById("mySelect");
-    modalMySelect.innerHTML="";
+  const collection = await callApiCategories();
+  // Récupération de l'élément du DOM qui accueillera les fiches
+  const modalMySelect = document.getElementById("mySelect");
+  modalMySelect.innerHTML = "";
 
-    for (let i = 0; i < collection.length; i++) {
+  for (let i = 0; i < collection.length; i++) {
 
-        const optSelect = collection[i];
+    const optSelect = collection[i];
 
-        createOptSelect(optSelect.id,optSelect.name)
-    }
+    createOptSelect(optSelect.id, optSelect.name)
+  }
 
-    return true;
+  return true;
 
 }
 
 // Get the file
 const modalMyFile = document.getElementById("myFile");
-modalMyFile.addEventListener("change",(event)=>{
+modalMyFile.addEventListener("change", (event) => {
 
-    modalAddPhotoSelected();
+  modalAddPhotoSelected();
 
-  });
+});
 
 //Get img after selection
 const modalMyPhotoAff = document.getElementById("modalAdd-img-aff");
-modalMyPhotoAff.addEventListener("click",(event)=>{
+modalMyPhotoAff.addEventListener("click", (event) => {
 
-    resetModalAdd();
+  resetModalAdd();
 
 });
 
 // Get the button that opens the modal
 const btn = document.getElementsByClassName("modal-btnAjouter")[0];
-btn.addEventListener("click",async function(event){
+btn.addEventListener("click", async function (event) {
 
-    let result = await ModalAddOpen();
-  
+  let result = await ModalAddOpen();
+
 });
 
 // Get the <span> element that closes the modal
 const arrowRetour = document.getElementsByClassName("modalAdd-arrow")[0];
-arrowRetour.onclick = function() {
-    modalAdd.style.display = "none";
-    modalDelete.style.display = "block";
+arrowRetour.onclick = function () {
+  modalAdd.style.display = "none";
+  modalDelete.style.display = "block";
 
-    modalForm.reset();
-  }
+  modalForm.reset();
+}
 
 
 const modalDelete = document.getElementById("myModal");
@@ -65,30 +78,30 @@ const modalForm = document.getElementById("formAdd");
 
 modalForm.addEventListener("submit", async (event) => {
 
-    event.preventDefault();
-  
-  
-    try{
-  
-      const reponse = await callApiAdd(modalMyFile.files[0],
-                                        event.target[1].value,
-                                        event.target[2].value);
-  
-  
-      if(await reponse.json()){
-        localStorage.removeItem("gallery");
-        let result = await genererGalleryDom();
-        result = await genererGalleryModal();
-        //console.log(result);
-        modalAddClose();
-        return true;
-      }
-  
-    }catch(err){
-      
-        throw new Error("ERROR : " + err.message);
-  
+  event.preventDefault();
+
+
+  try {
+
+    const reponse = await callApiAdd(modalMyFile.files[0],
+      event.target[1].value,
+      event.target[2].value);
+
+
+    if (await reponse.json()) {
+      localStorage.removeItem("gallery");
+      let result = await genererGalleryDom();
+      result = await genererGalleryModal();
+      //console.log(result);
+      modalAddClose();
+      return true;
     }
-  
-  
-  });
+
+  } catch (err) {
+
+    throw new Error("ERROR : " + err.message);
+
+  }
+
+
+});

@@ -1,20 +1,23 @@
 const add = 'localhost:5678';
 
+import {
+    callApiLoginMsgErr
+} from "../vue/vue.logout.js";
 
-import { callApiLoginMsgErr } from "../vue/vue.logout.js";
-
-export async function callApiCategories(){
+export async function callApiCategories() {
 
     let categories = null;
     let categoriesJson = window.localStorage.getItem('categories');
- 
+
     if (categoriesJson === null) {
 
-         try{
+        try {
 
             const response = await fetch(`http://${add}/api/categories`, {
-                 method: "GET",
-                 headers: { "Content-Type": "application/json" }
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
             });
 
             if (response.ok) {
@@ -23,20 +26,20 @@ export async function callApiCategories(){
 
                 // Transformation des identifiants en JSON
                 categoriesJson = JSON.stringify(categories);
-                
+
                 window.localStorage.setItem("categorie", categoriesJson);
 
-            }else{
+            } else {
 
                 throw new Error('Erreur réseau : ' + response.statusText);
 
             }
 
-         }catch(err){
-           
+        } catch (err) {
+
             throw new Error("ERROR : " + err.message);
 
-         }
+        }
 
     } else {
         categories = JSON.parse(categoriesJson);
@@ -47,18 +50,20 @@ export async function callApiCategories(){
 
 }
 
-export async function callApiGallery(){
+export async function callApiGallery() {
 
     let gallery = null;
     let galleryJson = window.localStorage.getItem('gallery');
- 
+
     if (galleryJson == null) {
 
-         try{
+        try {
 
             const response = await fetch(`http://${add}/api/works`, {
-                 method: "GET",
-                 headers: { "Content-Type": "application/json" }
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
             });
 
             if (response.ok) {
@@ -77,39 +82,41 @@ export async function callApiGallery(){
 
             }
 
-         }catch(err){
-           
-             throw new Error("ERROR : " + err.message);
+        } catch (err) {
 
-         }
+            throw new Error("ERROR : " + err.message);
+
+        }
 
     }
 
     return JSON.parse(galleryJson);
-    
+
 }
 
-export async function callApiLogin(email,password){
+export async function callApiLogin(email, password) {
 
     // création de l'objet pour l'appel fetch
-    const formulaireIdentification ={
-     "email": email,
-     "password": password
-     }
+    const formulaireIdentification = {
+        "email": email,
+        "password": password
+    }
 
-     let jeton = window.localStorage.getItem('token');
+    let jeton = window.localStorage.getItem('token');
 
-     if (jeton === null) {
+    if (jeton === null) {
 
-         try{
+        try {
 
-             const response = await fetch(`http://${add}/api/users/login`, {
-                 method: "POST",
-                 headers: { "Content-Type": "application/json" },
-                 body: JSON.stringify(formulaireIdentification)
-             });
+            const response = await fetch(`http://${add}/api/users/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formulaireIdentification)
+            });
 
-             if (response.ok) {
+            if (response.ok) {
 
                 let token = await response.json();
 
@@ -119,27 +126,27 @@ export async function callApiLogin(email,password){
                 callApiLoginMsgErr();
 
                 window.localStorage.setItem("token", jeton);
- 
-            }else{
+
+            } else {
                 if (response.status === 401) {
-                    callApiLoginMsgErr("block","Vous avez entré de mauvais identifiants");
-                }else{
-                    callApiLoginMsgErr("block","Probléme de connection : veuillez essayer plus tard.");
+                    callApiLoginMsgErr("block", "Vous avez entré de mauvais identifiants");
+                } else {
+                    callApiLoginMsgErr("block", "Probléme de connection : veuillez essayer plus tard.");
                     throw new Error('Erreur réseau : ' + response.statusText);
                 }
             }
-            
-         }catch(err){
+
+        } catch (err) {
 
             throw new Error("ERROR : " + err.message);
 
-         }
+        }
 
-         // Récupération des identifiants depuis l'API
+        // Récupération des identifiants depuis l'API
 
-     } else {
-         return jeton;
-     }
+    } else {
+        return jeton;
+    }
 
     //  document.querySelector(".lien-login").textContent = "logout";
 
@@ -147,37 +154,37 @@ export async function callApiLogin(email,password){
 
 
 
-export async function callApiAdd(file,title,category){
+export async function callApiAdd(file, title, category) {
 
     const data = new FormData()
     data.append('image', file);
     data.append('title', title);
     data.append('category', category);
 
-    try{
+    try {
 
         const token = JSON.parse(localStorage.getItem("token"));
 
         const response = await fetch(`http://${add}/api/works`, {
             method: "POST",
             headers: {
-                    "Authorization": `Bearer ${token.token}`,
-                    },
+                "Authorization": `Bearer ${token.token}`,
+            },
             body: data,
-    
-        });  
+
+        });
 
         if (response.ok) {
 
             return await response;
 
-        }else{
+        } else {
 
             throw new Error('Erreur réseau : ' + response.statusText);
 
         }
 
-    }catch(err){
+    } catch (err) {
 
         throw new Error("Error : " + err.message);
 
@@ -185,33 +192,38 @@ export async function callApiAdd(file,title,category){
 
 }
 
-export async function callApiSupp(num,token){
+export async function callApiSupp(num, token) {
 
-    try{
-      const response = await fetch(`http://${add}/api/works/${num}`, {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          headers: {"accept": "*/*"},
-          headers: {"Authorization": `Bearer ${token}`}
-      });
+    try {
+        const response = await fetch(`http://${add}/api/works/${num}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            headers: {
+                "accept": "*/*"
+            },
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
 
-    if (response.ok) {
+        if (response.ok) {
 
-        const valid = await response;
-   
-        return valid;
-  
-    }else{
+            const valid = await response;
 
-        throw new Error('Erreur réseau : ' + response.statusText);
+            return valid;
 
-    }
+        } else {
 
-    }catch(err){
-      
-      throw new Error("Error : " + err.message);
-      
+            throw new Error('Erreur réseau : ' + response.statusText);
+
+        }
+
+    } catch (err) {
+
+        throw new Error("Error : " + err.message);
+
     }
 
 }
-

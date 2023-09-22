@@ -1,14 +1,16 @@
-import { genererOptionMySelect } from "../controler/ctrl.modal.add.js";
+import {
+  genererOptionMySelect
+} from "../controler/ctrl.modal.add.js";
 
 
-export function createOptSelect(id,name){
-    
-    const optElement = document.createElement("option");
-    optElement.value = id;
-    optElement.textContent = name;
+export function createOptSelect(id, name) {
 
-    const modalMySelect = document.getElementById("mySelect");
-    modalMySelect.appendChild(optElement);
+  const optElement = document.createElement("option");
+  optElement.value = id;
+  optElement.textContent = name;
+
+  const modalMySelect = document.getElementById("mySelect");
+  modalMySelect.appendChild(optElement);
 
 }
 
@@ -28,45 +30,41 @@ const modalForm = document.getElementById("formAdd");
 // Get the file
 const modalMyFile = document.getElementById("myFile");
 
-  // When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal
 
 
-export function modalAddPhotoSelected(){
+export function modalAddPhotoSelected() {
 
-    modalMyPhotoAff.src=`./assets/images/${modalMyFile.files[0].name}`;
-    modalAddPhotoSelect.style.opacity= 0;
-    modalAddPhotoSelect.style.zIndex= -1;
-    modalMyCaptionPhotoAff.style.opacity= 1;
-    modalMyCaptionPhotoAff.style.zIndex= 1;
+  modalMyPhotoAff.src = `./assets/images/${modalMyFile.files[0].name}`;
+  modalAddPhotoSelect.style.opacity = 0;
+  modalAddPhotoSelect.style.zIndex = -1;
+  modalMyCaptionPhotoAff.style.opacity = 1;
+  modalMyCaptionPhotoAff.style.zIndex = 1;
 
-  }
-
-export async function ModalAddOpen(){
-
-    modalDelete.style.display = "none";
-    resetModalAdd();
-    let result = await genererOptionMySelect()
-    modalAdd.style.display = "block";
-  
-  }
-
-export function modalAddClose(){
-    modalAdd.style.display = "none";
-    modalDelete.style.display = "block";
 }
 
-export function resetModalAdd(){
+export async function ModalAddOpen() {
 
-  modalMyPhotoAff.src="";
-  modalAddPhotoSelect.style.opacity= 1;
-  modalAddPhotoSelect.style.zIndex= 1;
-  modalMyCaptionPhotoAff.style.opacity= 0;
-  modalMyCaptionPhotoAff.style.zIndex= -1;
+  modalDelete.style.display = "none";
+  resetModalAdd();
+  let result = await genererOptionMySelect()
+  modalAdd.style.display = "block";
+
+}
+
+export function modalAddClose() {
+  modalAdd.style.display = "none";
+  modalDelete.style.display = "block";
+}
+
+export function resetModalAdd() {
+
+  modalMyPhotoAff.src = "";
+  modalAddPhotoSelect.style.opacity = 1;
+  modalAddPhotoSelect.style.zIndex = 1;
+  modalMyCaptionPhotoAff.style.opacity = 0;
+  modalMyCaptionPhotoAff.style.zIndex = -1;
 
   modalForm.reset();
 
 }
-
-
-
-  
