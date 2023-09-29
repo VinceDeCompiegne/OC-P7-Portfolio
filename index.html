@@ -20,12 +20,12 @@
 		<link rel="stylesheet" href="./assets/css/modal.css" />
 	</head>
 	<body>
-		<div class="editionBondeau edition-bondeau-administration">
+		<div class="edition-bondeau edition-bondeau-administration">
 			<div class="edition-boutons">
 				<div class="edition-button-edition">
 					<i class="fa-regular fa-pen-to-square"></i> Mode édition
 				</div>
-				<viv class="edition-button-changement">Publier les changements</viv>
+				<!-- <div class="edition-button-changement">Publier les changements</div> -->
 			</div>
 		</div>
 		<header>
@@ -49,9 +49,6 @@
 			<section id="introduction">
 				<figure>
 					<img src="./assets/images/sophie-bluel.png" alt="" />
-					<span class="editionBondeau">
-						<i class="fa-regular fa-pen-to-square"></i> modifier
-					</span>
 				</figure>
 				<article>
 					<h2>Designer d'espace</h2>
@@ -75,11 +72,10 @@
 			<section id="portfolio">
 				<div id="portfolioTitre">
 					<h2>Mes Projets</h2>
-					<span class="editionBondeau">
+					<span class="edition-boutton">
 						<i class="fa-regular fa-pen-to-square"></i> modifier
 					</span>
 				</div>
-
 				<div class="filtre"></div>
 				<div class="gallery">
 					<!-- <figure>
@@ -124,13 +120,14 @@
 				<div id="modal-gallery"></div>
 				<hr />
 				<span class="modal-btnAjouter">Ajouter une photo</span>
-				<span class="modal-suppTout">Supprimer la galerie</span>
+				<!-- <span class="modal-suppTout">Supprimer la galerie</span> -->
 			</div>
 		</div>
 		<div id="myModalAdd" class="modal">
 			<!-- Contenu du modal ajout photo -->
 			<div class="modal-content">
 				<span class="modalAdd-arrow">&leftarrow;</span>
+				<span class="close-add">&times;</span>
 				<h2>Ajout photo</h2>
 				<form id="formAdd" action="#" enctype="multipart/form-data">
 					<div class="modalAdd-cadre-image">
@@ -164,9 +161,8 @@
 			</div>
 		</div>
 	</body>
-	<script type="module" src="./assets/js/controler/ctrl.logout.js"></script>
-	<script type="module" src="./assets/js/controler/ctrl.collection.js"></script>
-	<script type="module" src="./assets/js/controler/ctrl.gallery.js"></script>
-	<script type="module" src="./assets/js/controler/ctrl.modal.del.js"></script>
-	<script type="module" src="./assets/js/controler/ctrl.modal.add.js"></script>
+	<script src="./assets/js/POO/poo.authManager.js"></script>
+	<script src="./assets/js/POO/poo.collection.js"></script>
+	<script src="./assets/js/POO/poo.gallery.js"></script>
+	<script src="./assets/js/POO/poo.modal.js"></script>
 </html>
