@@ -104,7 +104,7 @@ class ModalManager {
             try {
                 let json = localStorage.getItem("token");
                 const token = (json !== null) ? JSON.parse(json) : "";
-                const response = yield fetch(`http://${this.add}/api/works`, {
+                const response = yield fetch(`https://${this.add}/api/works`, {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token.token}`,
