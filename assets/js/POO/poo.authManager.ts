@@ -15,7 +15,7 @@ class AuthenticationManager {
         this.editionBoutton = document.querySelector(".edition-boutton");
         this.editionBondeau = document.querySelector(".edition-bondeau");
         this.filtre = document.querySelector(".filtre");
-        this.add = 'localhost:5678';
+        this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
 
         if (this.formulaireConnexion) {
             this.setupLoginForm();
