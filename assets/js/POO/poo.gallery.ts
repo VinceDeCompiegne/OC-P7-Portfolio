@@ -33,7 +33,7 @@ class GalleryManager {
 
         if (galleryJson == null) {
             try {
-                const response = await fetch(`http://${this.add}/api/works`, {
+                const response = await fetch(`https://${this.add}/api/works`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
