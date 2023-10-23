@@ -74,7 +74,7 @@ class AuthenticationManager {
 
         if (jeton === null) {
             try {
-                const response = await fetch(`http://${this.add}/api/users/login`, {
+                const response = await fetch(`https://${this.add}/api/users/login`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
