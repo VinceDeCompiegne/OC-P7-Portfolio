@@ -2,7 +2,7 @@
 
 -  Professional of a project development from a static page of a digital portfolio.
 
-# Technologu used
+# Technology used
 
 -  HTML
 -  CSS
