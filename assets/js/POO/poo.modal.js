@@ -211,7 +211,7 @@ class ModalManager {
             let galleryJson = window.localStorage.getItem('gallery');
             if (galleryJson == null) {
                 try {
-                    const response = yield fetch(`http://${this.add}/api/works`, {
+                    const response = yield fetch(`https://${this.add}/api/works`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
@@ -325,7 +325,7 @@ class ModalManager {
     callApiSupp(num, token) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield fetch(`http://${this.add}/api/works/${num}`, {
+                const response = yield fetch(`https://${this.add}/api/works/${num}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
