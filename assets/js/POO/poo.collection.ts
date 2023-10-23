@@ -36,7 +36,7 @@ class FilterManager {
 
             try {
 
-                const response = await fetch(`http://${this.add}/api/categories`, {
+                const response = await fetch(`https://${this.add}/api/categories`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
