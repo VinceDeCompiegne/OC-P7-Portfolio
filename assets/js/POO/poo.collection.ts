@@ -17,7 +17,7 @@ class FilterManager {
 
         this.categories = [];
         this.selectedCategoryId = 0; // Par défaut, "Tous" est sélectionné
-        this.add = 'localhost:5678';
+        this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
         this.onSelectedCategoryChange = null;
 
     }
