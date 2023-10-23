@@ -99,7 +99,7 @@ class AuthenticationManager {
                         jeton = JSON.stringify(token);
                         this.callApiLoginMsgErr();
                         window.localStorage.setItem("token", jeton);
-                        window.location.href = "/index.html";
+                        window.location.href = "/OC-P7-Portfolio/index.html";
                     } else {
                         if (response.status === 401) {
                             this.callApiLoginMsgErr("block", "Vous avez entré de mauvais identifiants");
