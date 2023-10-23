@@ -26,7 +26,7 @@ class GalleryManager {
             let galleryJson = window.localStorage.getItem('gallery');
             if (galleryJson == null) {
                 try {
-                    const response = yield fetch(`http://${this.add}/api/works`, {
+                    const response = yield fetch(`https://${this.add}/api/works`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
