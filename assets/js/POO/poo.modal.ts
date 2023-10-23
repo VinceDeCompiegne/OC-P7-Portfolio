@@ -34,7 +34,7 @@ class ModalManager {
     this.btnEdition = document.querySelector(".edition-boutton");
     this.span = document.querySelector(".close");
     this.closeAdd = document.querySelector(".close-add");
-    this.add = 'localhost:5678';
+    this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
   }
 
   initialize() {
