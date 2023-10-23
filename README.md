@@ -19,7 +19,6 @@
 
 ```
  npx cypress
-
 ```
 
 ## Identifier
