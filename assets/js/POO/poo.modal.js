@@ -174,6 +174,7 @@ class ModalManager {
     }
     modalAddPhotoSelected() {
         if (this.modalMyPhotoAff !== null) {
+            alert(this.modalMyFile.files[0].webkitRelativePath);
             this.modalMyPhotoAff.src = `./assets/images/${this.modalMyFile.files[0].name}`;
         }
         if (this.modalAddPhotoSelect !== null) {
