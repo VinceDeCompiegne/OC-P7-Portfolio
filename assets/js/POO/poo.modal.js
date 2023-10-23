@@ -52,7 +52,7 @@ class ModalManager {
     }
     setupEventListeners() {
         var _a, _b, _c, _d;
-        (_a = this.modalMyFile) === null || _a === void 0 ? void 0 : _a.addEventListener("change", () => this.modalAddPhotoSelected());
+        (_a = this.modalMyFile) === null || _a === void 0 ? void 0 : _a.addEventListener("change", () => this.modalAddPhotoSelected(event));
         (_b = this.modalMyPhotoAff) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => this.resetModalAdd());
         (_c = this.btn) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
             return yield this.modalAddOpen();
@@ -172,9 +172,13 @@ class ModalManager {
             throw new Error("Erreur lors de la génération des options : " + err.message);
         }
     }
-    modalAddPhotoSelected() {
-        if (this.modalMyPhotoAff !== null) {
-            this.modalMyPhotoAff.src = `./assets/images/${this.modalMyFile.files[0].name}`;
+    modalAddPhotoSelected(event) {
+
+        const selectedFile = event.target.files[0];
+
+        if (selectedFile !== null) {
+
+            this.modalMyPhotoAff.src = `${URL.createObjectURL(selectedFile)}`;
         }
         if (this.modalAddPhotoSelect !== null) {
             this.modalAddPhotoSelect.style.opacity = "0";
