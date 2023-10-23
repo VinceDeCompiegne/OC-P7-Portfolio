@@ -28,7 +28,7 @@ class FilterManager {
             let categoriesJson = window.localStorage.getItem('categories');
             if (categoriesJson === null) {
                 try {
-                    const response = yield fetch(`http://${this.add}/api/categories`, {
+                    const response = yield fetch(`https://${this.add}/api/categories`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
