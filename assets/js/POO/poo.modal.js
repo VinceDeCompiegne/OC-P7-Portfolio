@@ -175,7 +175,7 @@ class ModalManager {
     modalAddPhotoSelected() {
         if (this.modalMyPhotoAff !== null) {
             alert(this.modalMyFile.files[0].webkitRelativePath);
-            this.modalMyPhotoAff.src = `./assets/images/${this.modalMyFile.files[0].name}`;
+            this.modalMyPhotoAff.src = `${this.modalMyFile.files[0].webkitRelativePath}/${this.modalMyFile.files[0].name}`;
         }
         if (this.modalAddPhotoSelect !== null) {
             this.modalAddPhotoSelect.style.opacity = "0";
