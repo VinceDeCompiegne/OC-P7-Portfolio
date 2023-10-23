@@ -1,10 +1,30 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+    function adopt(value) {
+        return value instanceof P ? value : new P(function (resolve) {
+            resolve(value);
+        });
+    }
+    return new(P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12,7 +32,7 @@ class FilterManager {
     constructor() {
         this.categories = [];
         this.selectedCategoryId = 0; // Par défaut, "Tous" est sélectionné
-        this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
+        this.add = 'oc-p7-portfolio.vincent-deramaux-portfolio.fr';
         this.onSelectedCategoryChange = null;
     }
     initialize() {
@@ -28,7 +48,7 @@ class FilterManager {
             let categoriesJson = window.localStorage.getItem('categories');
             if (categoriesJson === null) {
                 try {
-                    const response = yield fetch(`http://${this.add}/api/categories`, {
+                    const response = yield fetch(`https://${this.add}/api/categories`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
@@ -39,16 +59,13 @@ class FilterManager {
                         // Transformation des identifiants en JSON
                         categoriesJson = JSON.stringify(categories);
                         window.localStorage.setItem("categorie", categoriesJson);
-                    }
-                    else {
+                    } else {
                         throw new Error('Erreur réseau : ' + response.statusText);
                     }
-                }
-                catch (err) {
+                } catch (err) {
                     throw new Error("ERROR : " + err.message);
                 }
-            }
-            else {
+            } else {
                 categories = JSON.parse(categoriesJson);
             }
             // genererBtnFilter(categories);
@@ -91,8 +108,7 @@ class FilterManager {
         btn.forEach((button, index) => {
             if (index === id) {
                 button.classList.add("selected");
-            }
-            else {
+            } else {
                 button.classList.remove("selected");
             }
         });

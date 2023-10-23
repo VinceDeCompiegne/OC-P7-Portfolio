@@ -19,7 +19,7 @@ class GalleryManager {
     constructor() {
         this.gallery = [];
         this.selectedCategory = 0;
-        this.add = 'localhost:5678';
+        this.add = 'oc-p7-portfolio.vincent-deramaux-portfolio.fr';
     }
 
     async initialize() {
@@ -33,7 +33,7 @@ class GalleryManager {
 
         if (galleryJson == null) {
             try {
-                const response = await fetch(`http://${this.add}/api/works`, {
+                const response = await fetch(`https://${this.add}/api/works`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
