@@ -6,14 +6,21 @@
 
 >### For runtime
 
--  HTML
--  CSS
--  Javascript
+-   HTML
+-   CSS
+-   Javascript
+-   TypeScript
 
 >### For testing
 
 -  Cypress
-  
+
+#### Test Scripting
+
+```
+ npx cypress
+```
+
 ## Identifier
 
 |email|password|
