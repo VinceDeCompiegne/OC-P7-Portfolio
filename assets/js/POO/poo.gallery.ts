@@ -19,7 +19,7 @@ class GalleryManager {
     constructor() {
         this.gallery = [];
         this.selectedCategory = 0;
-        this.add = 'localhost:5678';
+        this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
     }
 
     async initialize() {
