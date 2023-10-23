@@ -4,10 +4,16 @@
 
 # Technology used
 
+>## For runtime
+
 -  HTML
 -  CSS
 -  Javascript
 
+>## For testing
+
+-  Cypress
+  
 # Identifier
 
 |email|password|
