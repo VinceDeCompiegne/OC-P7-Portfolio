@@ -178,7 +178,7 @@ class ModalManager {
 
         if (selectedFile!== null) {
             
-            this.modalMyPhotoAff.src = `${selectedFile.name}`;
+            this.modalMyPhotoAff.src = `${URL.createObjectURL(selectedFile)}`;
         }
         if (this.modalAddPhotoSelect !== null) {
             this.modalAddPhotoSelect.style.opacity = "0";
