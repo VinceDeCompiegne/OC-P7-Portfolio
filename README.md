@@ -17,8 +17,8 @@
 
 #### Test Scripting
 
-```cmd
-- npx cypress
+```
+    npx cypress
 ```
 
 ## Identifier
