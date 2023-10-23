@@ -2,23 +2,23 @@
 
 -  Professional of a project development from a static page of a digital portfolio.
 
-# Technology used
+## Technology used
 
->## For runtime
+>### For runtime
 
 -  HTML
 -  CSS
 -  Javascript
 
->## For testing
+>### For testing
 
 -  Cypress
   
-# Identifier
+## Identifier
 
 |email|password|
 |:---|:---:|
 |sophie.bluel@test.tld|S0phie|
 
-# Warning
+## Warning
 -  All files uploaded to the server will not be deleted, only links in the database.
