@@ -15,7 +15,7 @@ class AuthenticationManager {
         this.editionBoutton = document.querySelector(".edition-boutton");
         this.editionBondeau = document.querySelector(".edition-bondeau");
         this.filtre = document.querySelector(".filtre");
-        this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
+        this.add = 'oc-p7-portfolio.vincent-deramaux-portfolio.fr';
 
         if (this.formulaireConnexion) {
             this.setupLoginForm();
@@ -74,7 +74,7 @@ class AuthenticationManager {
 
         if (jeton === null) {
             try {
-                const response = await fetch(`http://${this.add}/api/users/login`, {
+                const response = await fetch(`https://${this.add}/api/users/login`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

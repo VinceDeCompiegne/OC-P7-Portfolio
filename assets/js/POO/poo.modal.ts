@@ -34,7 +34,7 @@ class ModalManager {
     this.btnEdition = document.querySelector(".edition-boutton");
     this.span = document.querySelector(".close");
     this.closeAdd = document.querySelector(".close-add");
-    this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
+    this.add = 'oc-p7-portfolio.vincent-deramaux-portfolio.fr';
   }
 
   initialize() {
@@ -122,7 +122,7 @@ class ModalManager {
       let json : string|null = localStorage.getItem("token");
       const token = (json!==null)?JSON.parse(json):"";
 
-      const response = await fetch(`http://${this.add}/api/works`, {
+      const response = await fetch(`https://${this.add}/api/works`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token.token}`,
@@ -238,7 +238,7 @@ class ModalManager {
 
       try {
 
-        const response = await fetch(`http://${this.add}/api/works`, {
+        const response = await fetch(`https://${this.add}/api/works`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -350,7 +350,7 @@ class ModalManager {
 
   async callApiSupp(num : number , token : string) {
     try {
-      const response = await fetch(`http://${this.add}/api/works/${num}`, {
+      const response = await fetch(`https://${this.add}/api/works/${num}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

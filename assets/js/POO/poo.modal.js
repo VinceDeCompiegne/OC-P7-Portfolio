@@ -1,10 +1,30 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+    function adopt(value) {
+        return value instanceof P ? value : new P(function (resolve) {
+            resolve(value);
+        });
+    }
+    return new(P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -25,7 +45,7 @@ class ModalManager {
         this.btnEdition = document.querySelector(".edition-boutton");
         this.span = document.querySelector(".close");
         this.closeAdd = document.querySelector(".close-add");
-        this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
+        this.add = 'oc-p7-portfolio.vincent-deramaux-portfolio.fr';
     }
     initialize() {
         this.setupEventListeners();
@@ -34,7 +54,9 @@ class ModalManager {
         var _a, _b, _c, _d;
         (_a = this.modalMyFile) === null || _a === void 0 ? void 0 : _a.addEventListener("change", () => this.modalAddPhotoSelected());
         (_b = this.modalMyPhotoAff) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => this.resetModalAdd());
-        (_c = this.btn) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () { return yield this.modalAddOpen(); }));
+        (_c = this.btn) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
+            return yield this.modalAddOpen();
+        }));
         if (this.arrowRetour !== null) {
             this.arrowRetour.onclick = () => this.modalAddClose();
         }
@@ -48,8 +70,7 @@ class ModalManager {
                     yield this.genererGalleryModal();
                     this.modalAddClose();
                 }
-            }
-            catch (err) {
+            } catch (err) {
                 throw new Error("ERROR : " + err.message);
             }
         }));
@@ -104,7 +125,7 @@ class ModalManager {
             try {
                 let json = localStorage.getItem("token");
                 const token = (json !== null) ? JSON.parse(json) : "";
-                const response = yield fetch(`http://${this.add}/api/works`, {
+                const response = yield fetch(`https://${this.add}/api/works`, {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token.token}`,
@@ -113,12 +134,10 @@ class ModalManager {
                 });
                 if (response.ok) {
                     return yield response;
-                }
-                else {
+                } else {
                     throw new Error('Erreur réseau : ' + response.statusText);
                 }
-            }
-            catch (err) {
+            } catch (err) {
                 throw new Error("Error : " + err.message);
             }
         });
@@ -149,8 +168,7 @@ class ModalManager {
                 this.createOptSelect(optSelect.id, optSelect.name);
             }
             return true;
-        }
-        catch (err) {
+        } catch (err) {
             throw new Error("Erreur lors de la génération des options : " + err.message);
         }
     }
@@ -211,7 +229,7 @@ class ModalManager {
             let galleryJson = window.localStorage.getItem('gallery');
             if (galleryJson == null) {
                 try {
-                    const response = yield fetch(`http://${this.add}/api/works`, {
+                    const response = yield fetch(`https://${this.add}/api/works`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
@@ -223,12 +241,10 @@ class ModalManager {
                         galleryJson = JSON.stringify(gallery);
                         window.localStorage.setItem("gallery", galleryJson);
                         return gallery;
-                    }
-                    else {
+                    } else {
                         throw new Error('Erreur réseau : ' + response.statusText);
                     }
-                }
-                catch (err) {
+                } catch (err) {
                     throw new Error("ERROR : " + err.message);
                 }
             }
@@ -242,8 +258,7 @@ class ModalManager {
             const sectionFiches = document.querySelector(`.gallery`);
             if (sectionFiches !== null) {
                 sectionFiches.innerHTML = "";
-            }
-            else {
+            } else {
                 return 0;
             }
             for (let i = 0; i < galleryFilter.length; i++) {
@@ -296,8 +311,7 @@ class ModalManager {
                     }
                 }
                 let deleted = yield this.modalDeltrachCall();
-            }
-            catch (err) {
+            } catch (err) {
                 throw new Error("error : " + err.message);
             }
         });
@@ -315,8 +329,7 @@ class ModalManager {
                         yield this.genererGalleryModal();
                         yield this.genererGalleryDom();
                     }
-                }
-                catch (err) {
+                } catch (err) {
                     throw new Error("Error : " + err.message);
                 }
             })));
@@ -325,7 +338,7 @@ class ModalManager {
     callApiSupp(num, token) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield fetch(`http://${this.add}/api/works/${num}`, {
+                const response = yield fetch(`https://${this.add}/api/works/${num}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -336,12 +349,10 @@ class ModalManager {
                 if (response.ok) {
                     const valid = yield response;
                     return valid;
-                }
-                else {
+                } else {
                     throw new Error('Erreur réseau : ' + response.statusText);
                 }
-            }
-            catch (err) {
+            } catch (err) {
                 throw new Error("Error : " + err.message);
             }
         });

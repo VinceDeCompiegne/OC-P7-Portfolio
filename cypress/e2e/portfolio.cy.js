@@ -4,13 +4,13 @@ describe('example to-do app', () => {
 
     // beforeAll(() => {
 
-    //     cy.visit('http://127.0.0.1:5501/');
+    //     cy.visit('https://127.0.0.1:5501/');
 
     // })
 
     it('Sélection des filtres', () => {
 
-        cy.visit('http://127.0.0.1:5501/');
+        cy.visit('https://127.0.0.1:5501/');
 
         cy.get('div.filtre-btn').eq(0).should('be.visible').click();
         cy.get('figure').then(($el) => {
@@ -33,7 +33,7 @@ describe('example to-do app', () => {
 
     it('Identification', () => {
 
-        cy.visit('http://127.0.0.1:5501/login.html');
+        cy.visit('https://127.0.0.1:5501/login.html');
 
         cy.get('#email').should('be.visible').type("sophie.bluel@test.tld");
         cy.get('#password').should('be.visible').type("S0phie");
@@ -56,7 +56,7 @@ describe('example to-do app', () => {
         cy.wait(2500)
 
         cy.get(".fa-trash").last().should('be.visible').click();
-        
+
         cy.wait(2500)
 
         cy.pause()

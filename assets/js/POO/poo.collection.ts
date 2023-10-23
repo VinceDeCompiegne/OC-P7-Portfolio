@@ -17,7 +17,7 @@ class FilterManager {
 
         this.categories = [];
         this.selectedCategoryId = 0; // Par défaut, "Tous" est sélectionné
-        this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
+        this.add = 'oc-p7-portfolio.vincent-deramaux-portfolio.fr';
         this.onSelectedCategoryChange = null;
 
     }
@@ -36,7 +36,7 @@ class FilterManager {
 
             try {
 
-                const response = await fetch(`http://${this.add}/api/categories`, {
+                const response = await fetch(`https://${this.add}/api/categories`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"

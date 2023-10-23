@@ -1,10 +1,30 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+    function adopt(value) {
+        return value instanceof P ? value : new P(function (resolve) {
+            resolve(value);
+        });
+    }
+    return new(P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -16,7 +36,7 @@ class AuthenticationManager {
         this.editionBoutton = document.querySelector(".edition-boutton");
         this.editionBondeau = document.querySelector(".edition-bondeau");
         this.filtre = document.querySelector(".filtre");
-        this.add = 'oc-p8-kasa.vincent-deramaux-portfolio.fr';
+        this.add = 'oc-p7-portfolio.vincent-deramaux-portfolio.fr';
         if (this.formulaireConnexion) {
             this.setupLoginForm();
         }
@@ -53,8 +73,7 @@ class AuthenticationManager {
         if (this.lienLogin !== null) {
             if (jeton) {
                 this.lienLogin.textContent = "logout";
-            }
-            else {
+            } else {
                 this.lienLogin.textContent = "login";
             }
         }
@@ -68,7 +87,7 @@ class AuthenticationManager {
             let jeton = window.localStorage.getItem('token');
             if (jeton === null) {
                 try {
-                    const response = yield fetch(`http://${this.add}/api/users/login`, {
+                    const response = yield fetch(`https://${this.add}/api/users/login`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -81,22 +100,18 @@ class AuthenticationManager {
                         this.callApiLoginMsgErr();
                         window.localStorage.setItem("token", jeton);
                         window.location.href = "/index.html";
-                    }
-                    else {
+                    } else {
                         if (response.status === 401) {
                             this.callApiLoginMsgErr("block", "Vous avez entré de mauvais identifiants");
-                        }
-                        else {
+                        } else {
                             this.callApiLoginMsgErr("block", "Problème de connexion : veuillez essayer plus tard.");
                             throw new Error('Erreur réseau : ' + response.statusText);
                         }
                     }
-                }
-                catch (err) {
+                } catch (err) {
                     throw new Error("ERROR : " + err.message);
                 }
-            }
-            else {
+            } else {
                 return jeton;
             }
         });
@@ -106,38 +121,29 @@ class AuthenticationManager {
         if (jeton) {
             if (this.lienLogin) {
                 this.lienLogin.textContent = "logout";
-            }
-            ;
+            };
             if (this.editionBondeau) {
                 this.editionBondeau.style.display = "flex";
-            }
-            ;
+            };
             if (this.editionBoutton) {
                 this.editionBoutton.style.display = "flex";
-            }
-            ;
+            };
             if (this.filtre) {
                 this.filtre.style.opacity = "0";
-            }
-            ;
-        }
-        else {
+            };
+        } else {
             if (this.lienLogin) {
                 this.lienLogin.textContent = "login";
-            }
-            ;
+            };
             if (this.editionBondeau) {
                 this.editionBondeau.style.display = "none";
-            }
-            ;
+            };
             if (this.editionBoutton) {
                 this.editionBoutton.style.display = "none";
-            }
-            ;
+            };
             if (this.filtre) {
                 this.filtre.style.opacity = "1";
-            }
-            ;
+            };
         }
         if (typeof this.onLogout === 'function') {
             if (!jeton) {
