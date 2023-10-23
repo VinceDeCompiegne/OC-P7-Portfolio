@@ -1,98 +1,98 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 class GalleryManager {
-
     constructor() {
-        this.gallery = null;
+        this.gallery = [];
         this.selectedCategory = 0;
         this.add = 'localhost:5678';
     }
-
-    async initialize() {
-        this.gallery = await this.callApiGallery();
-        this.genererGalleryDom();
+    initialize() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.gallery = yield this.callApiGallery();
+            this.genererGalleryDom();
+        });
     }
-
-    async callApiGallery() {
-        let gallery = null;
-        let galleryJson = window.localStorage.getItem('gallery');
-
-        if (galleryJson == null) {
-            try {
-                const response = await fetch(`http://${this.add}/api/works`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
+    callApiGallery() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let gallery = null;
+            let galleryJson = window.localStorage.getItem('gallery');
+            if (galleryJson == null) {
+                try {
+                    const response = yield fetch(`http://${this.add}/api/works`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    });
+                    if (response.ok) {
+                        gallery = yield response.json();
+                        galleryJson = JSON.stringify(gallery);
+                        window.localStorage.setItem("gallery", galleryJson);
+                        return gallery;
                     }
-                });
-
-                if (response.ok) {
-                    gallery = await response.json();
-                    galleryJson = JSON.stringify(gallery);
-                    window.localStorage.setItem("gallery", galleryJson);
-                    return gallery;
-                } else {
-                    throw new Error('Erreur réseau : ' + response.statusText);
+                    else {
+                        throw new Error('Erreur réseau : ' + response.statusText);
+                    }
                 }
-            } catch (err) {
-                throw new Error("ERROR : " + err.message);
+                catch (err) {
+                    throw new Error("ERROR : " + err.message);
+                }
             }
-        }
-
-        return JSON.parse(galleryJson);
+            return JSON.parse(galleryJson);
+        });
     }
-
-    async genererGallery(category = 0) {
-        let galleryFilter = null;
-
-        if (category == 0) {
-            galleryFilter = this.gallery;
-        } else {
-            galleryFilter = this.gallery.filter((item) => item.category.id == category);
-        }
-
-        return galleryFilter;
+    genererGallery(category = 0) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let galleryFilter = null;
+            if (category == 0) {
+                galleryFilter = this.gallery;
+            }
+            else {
+                galleryFilter = this.gallery.filter((item) => item.category.id == category);
+            }
+            return galleryFilter;
+        });
     }
-
-    async genererGalleryDom(id = 0) {
-        const galleryFilter = await this.genererGallery(id);
-        const token = window.localStorage.getItem('token');
-
-        const sectionFiches = document.querySelector(`.gallery`);
-        if (sectionFiches !== null) {
-            sectionFiches.innerHTML = "";
-        } else {
-            return 0;
-        }
-
-        for (let i = 0; i < galleryFilter.length; i++) {
-            const item = galleryFilter[i];
-
-            const tableauElement = document.createElement("figure");
-            const imageElement = document.createElement("img");
-            imageElement.src = item.imageUrl;
-            const nomElement = document.createElement("figcaption");
-
-            // if (token === null) {
-            nomElement.innerText = item.title;
-            // } else {
-            //     nomElement.innerText = "Editer";
-            // }
-
-            tableauElement.appendChild(imageElement);
-            tableauElement.appendChild(nomElement);
-            sectionFiches.appendChild(tableauElement);
-        }
+    genererGalleryDom(id = 0) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const galleryFilter = yield this.genererGallery(id);
+            const token = window.localStorage.getItem('token');
+            const sectionFiches = document.querySelector(`.gallery`);
+            if (sectionFiches !== null) {
+                sectionFiches.innerHTML = "";
+            }
+            else {
+                return 0;
+            }
+            for (let i = 0; i < galleryFilter.length; i++) {
+                const item = galleryFilter[i];
+                const tableauElement = document.createElement("figure");
+                const imageElement = document.createElement("img");
+                imageElement.src = item.imageUrl;
+                const nomElement = document.createElement("figcaption");
+                // if (token === null) {
+                nomElement.innerText = item.title;
+                // } else {
+                //     nomElement.innerText = "Editer";
+                // }
+                tableauElement.appendChild(imageElement);
+                tableauElement.appendChild(nomElement);
+                sectionFiches.appendChild(tableauElement);
+            }
+        });
     }
 }
-
 // Usage
 const galleryManager = new GalleryManager();
 galleryManager.initialize();
-
 filterManager.onSelectedCategoryChange = (newCategoryId) => {
     galleryManager.genererGalleryDom(newCategoryId);
-};
-
-AuthManager.onLogout = () => {
-    filterManager.selectButton(0);
-    // galleryManager.genererGalleryDom();
 };
