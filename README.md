@@ -18,11 +18,8 @@
 #### Test Scripting
 
 ```
-<<<<<<< HEAD
-    npx cypress
-=======
  npx cypress
->>>>>>> 58597e5912b1e748252913a0f650abdae74f0912
+
 ```
 
 ## Identifier
