@@ -68,7 +68,7 @@ class AuthenticationManager {
             let jeton = window.localStorage.getItem('token');
             if (jeton === null) {
                 try {
-                    const response = yield fetch(`http://${this.add}/api/users/login`, {
+                    const response = yield fetch(`https://${this.add}/api/users/login`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
