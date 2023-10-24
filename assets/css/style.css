@@ -275,14 +275,8 @@ span {
 	grid-row-gap: 20px;
 }
 
-.gallery div {
-	width: 100%;
-	object-fit: cover;
-}
-
 .gallery img {
 	height: 100%;
-	/* object-fit: cover; */
 }
 
 #contact {
