@@ -269,6 +269,7 @@ span {
 
 .gallery {
 	width: 100%;
+	object-fit: cover;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
