@@ -269,15 +269,19 @@ span {
 
 .gallery {
 	width: 100%;
-	object-fit: cover;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
 
-.gallery img {
+.gallery div {
 	width: 100%;
+	object-fit: cover;
+}
+
+.gallery img {
+	height: 100%;
 	/* object-fit: cover; */
 }
 
