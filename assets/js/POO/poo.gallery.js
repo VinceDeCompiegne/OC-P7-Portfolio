@@ -91,6 +91,7 @@ class GalleryManager {
             for (let i = 0; i < galleryFilter.length; i++) {
                 const item = galleryFilter[i];
                 const tableauElement = document.createElement("figure");
+                const divElement = document.createElement("div");
                 const imageElement = document.createElement("img");
                 imageElement.src = item.imageUrl;
                 const nomElement = document.createElement("figcaption");
@@ -99,8 +100,9 @@ class GalleryManager {
                 // } else {
                 //     nomElement.innerText = "Editer";
                 // }
-                tableauElement.appendChild(imageElement);
-                tableauElement.appendChild(nomElement);
+                divElement.appendChild(imageElement);
+                divElement.appendChild(nomElement);
+                tableauElement.appendChild(divElement);
                 sectionFiches.appendChild(tableauElement);
             }
         });

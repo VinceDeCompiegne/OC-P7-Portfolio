@@ -268,13 +268,11 @@ class ModalManager {
             for (let i = 0; i < galleryFilter.length; i++) {
                 const tableau = galleryFilter[i];
                 const tableauElement = document.createElement("figure");
-                const divElement = document.createElement("div");
                 const imageElement = document.createElement("img");
                 imageElement.src = tableau.imageUrl;
                 const nomElement = document.createElement("figcaption");
                 nomElement.innerText = tableau.title;
-                tableauElement.appendChild(divElement);
-                divElement.appendChild(imageElement);
+                tableauElement.appendChild(imageElement);
                 tableauElement.appendChild(nomElement);
                 sectionFiches.appendChild(tableauElement);
             }
