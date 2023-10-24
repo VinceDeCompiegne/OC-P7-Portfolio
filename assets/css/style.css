@@ -277,7 +277,7 @@ span {
 
 .gallery img {
 	width: 100%;
-	object-fit: cover;
+	/* object-fit: cover; */
 }
 
 #contact {
