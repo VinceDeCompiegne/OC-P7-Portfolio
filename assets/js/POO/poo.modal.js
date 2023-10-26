@@ -172,13 +172,9 @@ class ModalManager {
             throw new Error("Erreur lors de la génération des options : " + err.message);
         }
     }
-    modalAddPhotoSelected(event) {
-
-        const selectedFile = event.target.files[0];
-
-        if (selectedFile!== null) {
-            
-            this.modalMyPhotoAff.src = `${URL.createObjectURL(selectedFile)}`;
+    modalAddPhotoSelected() {
+        if (this.modalMyPhotoAff !== null) {
+            this.modalMyPhotoAff.src = `./assets/images/${this.modalMyFile.files[0].name}`;
         }
         if (this.modalAddPhotoSelect !== null) {
             this.modalAddPhotoSelect.style.opacity = "0";
