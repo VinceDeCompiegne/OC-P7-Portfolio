@@ -10,7 +10,7 @@ describe('example to-do app', () => {
 
     it('Sélection des filtres', () => {
 
-        cy.visit('https://127.0.0.1:5501/');
+        cy.visit('https://vincedecompiegne.github.io/OC-P7-Portfolio/');
 
         cy.get('div.filtre-btn').eq(0).should('be.visible').click();
         cy.get('figure').then(($el) => {
@@ -33,11 +33,13 @@ describe('example to-do app', () => {
 
     it('Identification', () => {
 
-        cy.visit('https://127.0.0.1:5501/login.html');
+        cy.visit('https://vincedecompiegne.github.io/OC-P7-Portfolio/login.html');
 
         cy.get('#email').should('be.visible').type("sophie.bluel@test.tld");
         cy.get('#password').should('be.visible').type("S0phie");
         cy.get("input").eq(2).should('be.visible').click();
+
+        // cy.visit('http://127.0.0.1:5501/index.html');
 
         cy.get('span.edition-boutton').eq(0).should('be.visible').click();
 
