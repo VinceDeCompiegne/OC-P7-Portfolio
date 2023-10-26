@@ -18,8 +18,18 @@
 #### Test Scripting
 
 ```
- npx cypress
+ npm update
+
 ```
+
+then,
+
+```
+ npx cypress open
+
+```
+
+Choose an Navigator
 
 ## Identifier
 
